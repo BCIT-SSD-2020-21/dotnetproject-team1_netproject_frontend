@@ -22,3 +22,34 @@
 /*--------------------------------------------------------------
 # Components
 --------------------------------------------------------------*/
+@import "./components/header";
+@import "./components/chat";
+@import "./components/auth";
+
+
+/*--------------------------------------------------------------
+# GENERAL
+--------------------------------------------------------------*/
+
+html {
+  height: 100vh;
+}
+
+body {
+  height: 100%;
+}
+
+#root {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  height: 100%;
+}
+
+.App {
+  color: white;
+  background: $dark-grey;
+  width: 100%;
+  max-width: 700px;
+  margin: auto;
+}
