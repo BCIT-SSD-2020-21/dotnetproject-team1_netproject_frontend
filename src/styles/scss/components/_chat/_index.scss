@@ -1,3 +1,6 @@
+/*--------------------------------------------------------------
+# SUBMIT CHAT MESSAGE
+--------------------------------------------------------------*/
 .SubmitMessage {
   border-top: 1px solid $dark-grey;
   background: $light-black;
@@ -46,10 +49,15 @@
   }
 }
 
+/*--------------------------------------------------------------
+# CHAT LIST
+--------------------------------------------------------------*/
+
 .ChatList {
   height: 500px;
   overflow-y: auto;
   padding: 7px 20px;
+  position: relative;
 
   /* width */
   &::-webkit-scrollbar {
@@ -72,13 +80,15 @@
     opacity: 0.25;
     border-radius: 10px;
   }
+  
+  /*--------------------------------------------------------------
+  # CHAT SINGULAR
+  --------------------------------------------------------------*/
 
   li {
     margin-bottom: 20px;
     min-height: 130px;
   }
-
-
 
   .chat__container {
     display: flex;
@@ -167,6 +177,7 @@
     }
   }
 
+  // SET ALL ODD MESSAGE STYLES
   & .Chat > li:nth-child(odd) > .chat__container{
     display: flex;
     flex-direction: row-reverse;
@@ -193,3 +204,66 @@
     }
   }
 }
+
+
+/*--------------------------------------------------------------
+# CHAT BLOCKER
+--------------------------------------------------------------*/
+.ChatBlocker {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  z-index: 300;
+  background: $black;
+}
+
+.cb__container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  height: 100%;
+
+  h2, p {
+    margin: auto;
+    color: white;
+    margin-bottom: 7px;
+  }
+
+  svg {
+    margin: auto;
+    height: 75px;
+    width: 75px;
+    fill: white;
+    margin-bottom: 30px;
+  }
+}
+
+.cb__buttons {
+  max-width: 300px;
+  display: flex;
+  margin: auto;
+  margin-top: 30px;
+  gap: 15px;
+
+  button,
+  a {
+    text-align: center;
+    width: 100%;
+    @include body-regular;
+    background: $light-ruby;
+    cursor: pointer;
+    padding: 7px 14px;
+    border: 1px solid $dark-ruby;
+    transition: .2s ease-in-out;
+
+    &:hover,
+    &:focus,
+    &:active {
+      filter: brightness(50%);
+    }
+  }
+}
+
+

@@ -1,23 +1,38 @@
 import React, { Component } from 'react'
 import Chat from '../Chat'
 import ChatMessage from './ChatMessage'
+import ChatBlocker from './ChatBlocker'
 
 export class Chatlist extends Component {
-    render() {
-        return (
-            <div className="ChatList">
-                <ul className="Chat">
-                    <ChatMessage />
-                    <ChatMessage />
-                    <ChatMessage />
-                    <ChatMessage />
-                    <ChatMessage />
-                    <ChatMessage />
-                    <ChatMessage />
-                </ul>
-            </div>
-        )
+  constructor(props){
+    super(props)
+    this.state = {
+      isAuthenticated: false
     }
+  }
+  render() {
+    const { isAuthenticated } = this.state;
+    const activeChat  = {
+      overflowY: 'auto'
+    }
+    const inactiveChat  = {
+      overflowY: 'hidden'
+    }
+    return (
+        <div className="ChatList" style={ isAuthenticated ? activeChat : inactiveChat }>
+            { isAuthenticated ? '' : <ChatBlocker />}
+            <ul className="Chat">
+                <ChatMessage />
+                <ChatMessage />
+                <ChatMessage />
+                <ChatMessage />
+                <ChatMessage />
+                <ChatMessage />
+                <ChatMessage />
+            </ul>
+        </div>
+    )
+  }
 }
 
 export default Chatlist
