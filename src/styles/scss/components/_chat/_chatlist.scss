@@ -1,0 +1,32 @@
+/*--------------------------------------------------------------
+# CHAT LIST
+--------------------------------------------------------------*/
+
+.ChatList {
+  height: 500px;
+  overflow-y: auto;
+  padding: 7px 20px;
+  position: relative;
+
+  /* width */
+  &::-webkit-scrollbar {
+    width: 4px;
+  }
+
+  /* Track */
+  &::-webkit-scrollbar-track {
+    background: $grey;
+    border: none;
+    outline: none;
+    border-radius: 10px;
+  }
+  
+  /* Handle */
+  &::-webkit-scrollbar-thumb {
+    border: none;
+    // background: rgba($color: $grey, $alpha: 0.75);
+    background: $light-ruby;
+    opacity: 0.25;
+    border-radius: 10px;
+  }
+}
