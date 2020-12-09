@@ -7,7 +7,7 @@ export class Chatlist extends Component {
   constructor(props){
     super(props)
     this.state = {
-      isAuthenticated: false
+      isAuthenticated: true
     }
   }
   render() {
