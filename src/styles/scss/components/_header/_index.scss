@@ -2,6 +2,16 @@ header {
   border-bottom: 1px solid $dark-grey;
   background: $light-black;
 
+  a {
+    color: white;
+    transition: .2s ease-in-out;
+    &:hover,
+    &:focus,
+    &:active {
+      filter: brightness(50%);
+    }
+  }
+
   .header__wrap {
     padding: 7px 20px;
   }
@@ -23,8 +33,10 @@ header {
       @include body-light;
     }
 
-    ul li button {
+    ul li button,
+    ul li a {
       cursor: pointer;
+      color: white;
     }
   }
 
