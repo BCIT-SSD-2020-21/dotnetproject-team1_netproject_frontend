@@ -1,4 +1,11 @@
 import React, { Component } from 'react'
+import Chat from '../Chat'
+import ChatMessage from './ChatMessage'
+import ChatBlocker from './ChatBlocker'
+import Chatlist from './Chatlist'
+
+
+const BASE_URL = "https://localhost:3000/api/";
 
 export class SubmitMessage extends Component {
   constructor(props){
@@ -21,10 +28,9 @@ export class SubmitMessage extends Component {
         method: 'POST',
       
         body: JSON.stringify({
-            IsComplete:  false, // Set default to false.
-            Username: username,
-            Message: message,
-            CreatedOn: new Date()
+            userName: this.state.username,
+            messageText: this.state.message,
+            createdOn: new Date()
         })
     })
     
@@ -32,10 +38,8 @@ export class SubmitMessage extends Component {
         
         .then(json => {
             console.log(JSON.stringify(json));
-            message(''); // Clear input. 
-            fetchMessages();
         })
-        // Data not retrieved.
+        
         .catch(function (error) {
             console.log(error);
         }) 
@@ -61,7 +65,7 @@ export class SubmitMessage extends Component {
               </label>
               <div className="fieldset">
                 <input type="text" placeholder="Aa" id="message" value={this.state.message} onChange={(e) => this.onInputChange(e)}/>
-                <button>Send</button>
+                <button onClick={this.submitMessages}>Send</button>
               </div>
             </form>
           </div>
