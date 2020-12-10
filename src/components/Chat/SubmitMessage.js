@@ -15,6 +15,35 @@ export class SubmitMessage extends Component {
     });
   }
 
+
+  submitMessages = () => {
+    fetch(`${BASE_URL}Chat`, {
+        method: 'POST',
+      
+        body: JSON.stringify({
+            IsComplete:  false, // Set default to false.
+            Username: username,
+            Message: message,
+            CreatedOn: new Date()
+        })
+    })
+    
+    .then(res => res.json())
+        
+        .then(json => {
+            console.log(JSON.stringify(json));
+            message(''); // Clear input. 
+            fetchMessages();
+        })
+        // Data not retrieved.
+        .catch(function (error) {
+            console.log(error);
+        }) 
+}
+
+
+
+
   render() {
       return (
         <section className="SubmitMessage">
