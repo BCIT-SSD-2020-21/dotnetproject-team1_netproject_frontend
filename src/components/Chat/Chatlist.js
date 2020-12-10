@@ -47,40 +47,10 @@ componentDidMount = () => {
             { isAuthenticated ? '' : <ChatBlocker/>}
             <ul className="Chat">
               { this.state.messages.map((message, index)=>{
-                return( <li key= {index}>
-                  <div className="chat__container"> 
-                    <div className="chat__col left">
-                        <div className="img-container">
-                          <img src="https://pfteza-chatapp.s3-us-west-1.amazonaws.com/iconmonstr-user-20.svg" alt="profile-image" />
-                        </div>
-                        <div className="rating">
-                            <span className="rating__container">
-                                <button><UpTriangle/></button>
-                                <span className="rating__int">+1</span>
-                                <button><DownTriangle/></button>
-                            </span>
-                        </div>
-                    </div>
-                    <div className="chat__col right">
-                      <div className="messageBody">
-              <span className="username">{message.userName}</span>
-              <span className="message">{message.messageText}</span>
-                      </div>
-                      <div className="messageMeta">
-                        {message.createdOn} &nbsp;•&nbsp;
-                          <button
-                            style={{color: "#E52646"}}
-                          >
-                              Delete
-                          </button>
-                      </div>
-                    </div>
-                  </div>
-                </li>)
-              })
-
-
-              }
+                return( 
+                  <ChatMessage message={message} key={index}/>
+                )
+              })}
             </ul>
         </div>
     )
