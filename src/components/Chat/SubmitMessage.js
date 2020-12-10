@@ -5,7 +5,7 @@ import ChatBlocker from './ChatBlocker'
 import Chatlist from './Chatlist'
 
 
-const BASE_URL = "https://localhost:3000/api/";
+const BASE_URL = "https://localhost:44363/api/";
 
 export class SubmitMessage extends Component {
   constructor(props){
@@ -54,7 +54,7 @@ export class SubmitMessage extends Component {
           <div className="sm__wrap">
             <form>
               <label id="sm__label">
-                <p>Username:  </p>
+                <p>Alias:  </p>
               </label>
               <div className="fieldset">
                 <input type="text" placeholder="Username" id="username" value={this.state.username} onChange={(e) => this.onInputChange(e)}/>
