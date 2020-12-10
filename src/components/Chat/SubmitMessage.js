@@ -12,7 +12,7 @@ export class SubmitMessage extends Component {
     super(props)
     this.state = {
       username: '',
-      message: '',
+      message: ''
     }
   }
 
@@ -26,7 +26,6 @@ export class SubmitMessage extends Component {
   submitMessages = () => {
     fetch(`${BASE_URL}Chat`, {
         method: 'POST',
-      
         body: JSON.stringify({
             userName: this.state.username,
             messageText: this.state.message,
@@ -38,6 +37,7 @@ export class SubmitMessage extends Component {
         
         .then(json => {
             console.log(JSON.stringify(json));
+            this.setState('');
         })
         
         .catch(function (error) {
@@ -65,7 +65,9 @@ export class SubmitMessage extends Component {
               </label>
               <div className="fieldset">
                 <input type="text" placeholder="Aa" id="message" value={this.state.message} onChange={(e) => this.onInputChange(e)}/>
-                <form onSubmit={this.submitMessages}>Send</form>
+                <form onSubmit={this.submitMessages}>  <div className="fieldset">
+                      <input type="submit" id="submitMessages" name="submitMessages" value="Send"/>
+                    </div></form>
               </div>
             </form>
           </div>
