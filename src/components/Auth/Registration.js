@@ -17,6 +17,44 @@ export class Registration extends Component {
       [e.target.id]: e.target.value
     });
   }
+
+
+  handleSubmit = async (event) => {
+    event.preventDefault()
+    
+      //Integrate Auth here on valid form submission
+      fetch('https://localhost:44363/Auth/Register', {
+        method: 'POST',
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+            Email: this.state.email,
+            Password: this.state.password,
+            ConfirmPassword: this.state.confirmpassword
+        })
+      })
+      // Response received.
+      .then(response => response.json())
+      // Data retrieved.
+      .then(json => {
+          console.log(JSON.stringify(json));
+          // Store token with session data.
+          if(json["status"]=="OK") {
+              sessionStorage.setItem('bearer-token', json["token"]);
+              console.log(sessionStorage.getItem('bearer-token'))
+          }
+          else {
+              // error message handling
+              console.log('Error in Auth/Register');
+          }
+      })
+      // Data not retrieved.
+      .catch(function (error) {
+          console.log(error);
+      })
+  }
     
   render() {
       const { email, password, confirmpassword } = this.state;
@@ -27,7 +65,7 @@ export class Registration extends Component {
                 <div className="modal-head">
                     <h3 className="modal-title">Register</h3>
                 </div>
-                <form onSubmit={this.onSubmit}>
+                <form onSubmit={this.handleSubmit}>
                     <div className="fieldset">
                       <MailIcon />
                       <input type="text" id="email" name="email" placeholder="email" value={ email } onChange={this.onInputChange}/>
