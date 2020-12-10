@@ -24,14 +24,14 @@ export class SubmitMessage extends Component {
                 <p>Alias:</p>
               </label>
               <div className="fieldset">
-                <input type="text" placeholder="Username" value={this.state.username} onChange={(e) => this.onInputChange(e)}/>
+                <input type="text" placeholder="Username" id="username" value={this.state.username} onChange={(e) => this.onInputChange(e)}/>
               </div>
               <br/>
               <label id="sm__label">
                 <p>Message:</p>
               </label>
               <div className="fieldset">
-                <input type="text" placeholder="Aa" value={this.state.message} onChange={(e) => this.onInputChange(e)}/>
+                <input type="text" placeholder="Aa" id="message" value={this.state.message} onChange={(e) => this.onInputChange(e)}/>
                 <button>Send</button>
               </div>
             </form>
