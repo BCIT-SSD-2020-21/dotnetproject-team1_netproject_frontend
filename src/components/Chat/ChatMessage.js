@@ -4,8 +4,6 @@ import { UpTriangle, DownTriangle } from '../Icons'
 export class ChatMessage extends Component {
   render() {
     const {createdOn, messageText, userName } = this.props.message
-    console.log(this.props)
-
     return (
       <li>
         <div className="chat__container"> 
