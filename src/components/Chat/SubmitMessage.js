@@ -54,7 +54,7 @@ export class SubmitMessage extends Component {
           <div className="sm__wrap">
             <form>
               <label id="sm__label">
-                <p>Alias:</p>
+                <p>Username:  </p>
               </label>
               <div className="fieldset">
                 <input type="text" placeholder="Username" id="username" value={this.state.username} onChange={(e) => this.onInputChange(e)}/>
