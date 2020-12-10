@@ -81,14 +81,6 @@ componentDidMount = () => {
 
 
               }
-
-                {/* <ChatMessage />
-                <ChatMessage />
-                <ChatMessage />
-                <ChatMessage />
-                <ChatMessage />
-                <ChatMessage />
-                <ChatMessage /> */}
             </ul>
         </div>
     )

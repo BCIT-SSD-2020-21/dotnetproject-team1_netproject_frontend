@@ -17,6 +17,7 @@
   .chat__col.right {
     text-align: left;
     position: relative;
+    width: 100%;
 
     &::after {
       content: "";
@@ -36,6 +37,7 @@
       border-radius: 2px;
       line-height: 1.4em;
       gap: 0;
+      width: 100%;
     }
 
     .messageBody .username {
@@ -72,6 +74,7 @@
 
     .rating {
       @include body-light;
+      opacity: 0;
     }
 
     .rating__container {
