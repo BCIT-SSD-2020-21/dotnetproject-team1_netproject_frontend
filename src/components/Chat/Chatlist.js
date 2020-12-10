@@ -5,7 +5,7 @@ import ChatBlocker from './ChatBlocker'
 import { UpTriangle, DownTriangle } from '../Icons'
 
 
-const BASE_URL = "https://localhost:3000/api/";
+const BASE_URL = "https://localhost:44363/api/";
 
 export class Chatlist extends Component {
   constructor(props){
