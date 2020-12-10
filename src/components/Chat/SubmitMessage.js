@@ -65,7 +65,7 @@ export class SubmitMessage extends Component {
               </label>
               <div className="fieldset">
                 <input type="text" placeholder="Aa" id="message" value={this.state.message} onChange={(e) => this.onInputChange(e)}/>
-                <button onSubmit={this.submitMessages}>Send</button>
+                <form onSubmit={this.submitMessages}>Send</form>
               </div>
             </form>
           </div>
