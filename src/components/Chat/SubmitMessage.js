@@ -17,7 +17,8 @@ export class SubmitMessage extends Component {
     });
   }
 
-  submitMessages = () => {
+  submitMessages = (e) => {
+    e.preventDefault();
     fetch(`${BASE_URL}Chat`, {
         method: 'POST',   
         headers: {
@@ -51,7 +52,7 @@ export class SubmitMessage extends Component {
         <section className="SubmitMessage">
 
           <div className="sm__wrap">
-          <form onSubmit={this.submitMessages}>
+          <form onSubmit={(e) => this.submitMessages(e)}>
               <label id="sm__label">
                 <p>Alias:  </p>
               </label>
