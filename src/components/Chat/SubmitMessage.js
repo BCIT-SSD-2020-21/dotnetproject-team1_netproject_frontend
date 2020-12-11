@@ -1,12 +1,11 @@
 
 import React, {Component } from 'react'
-const BASE_URL = 'https://localhost:44363/api/';
+const BASE_URL = 'https://parlezwebapi.azurewebsites.net/api/';
 
 export class SubmitMessage extends Component {
   constructor(props){
     super(props)
     this.state = {
-     // id: '',
       userName: '',
       messageText: ''
     }
@@ -18,7 +17,9 @@ export class SubmitMessage extends Component {
     });
   }
 
-  submitMessages = () => {
+  submitMessages = (e) => {
+    e.preventDefault();
+    console.log('chat message sent')
     fetch(`${BASE_URL}Chat`, {
         method: 'POST',   
         headers: {
@@ -26,22 +27,17 @@ export class SubmitMessage extends Component {
           'Content-Type': 'application/json',
       },
         body: JSON.stringify({
-         // id: this.state.id,
             userName: this.state.userName,
             messageText: this.state.messageText,
             createdOn: new Date()
         })
     })
-    
     .then(res => res.json())
-        
         .then(json => {
             console.log(JSON.stringify(json));
-             this.setState('');
-            // fetchMessages();
-             
+             this.setState({messageText: ''});
+             this.props.didPost();   
         })
-        
         .catch(function (error) {
             console.log(error);
         }) 
@@ -53,7 +49,7 @@ export class SubmitMessage extends Component {
         <section className="SubmitMessage">
 
           <div className="sm__wrap">
-          <form onSubmit={this.submitMessages}>
+          <form onSubmit={(e) => this.submitMessages(e)}>
               <label id="sm__label">
                 <p>Alias:  </p>
               </label>
