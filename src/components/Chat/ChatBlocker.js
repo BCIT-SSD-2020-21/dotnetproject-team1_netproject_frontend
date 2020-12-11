@@ -1,5 +1,6 @@
 import React from 'react'
 import { ChatBubble } from '../Icons'
+import { Link } from 'react-router-dom';
 
 export default function ChatBlocker() {
   return (
@@ -12,7 +13,8 @@ export default function ChatBlocker() {
           <h2>Welcome to Parlez!</h2>
           <p>Please Log-in or Register to access the Parlez Application</p>
           <div className="cb__buttons">
-            <button>Login</button><button>Register</button>
+          <button><Link to="/login">Login</Link></button>
+            <button><Link to="/register">Register</Link></button>
           </div>
         </div>
       </section>
