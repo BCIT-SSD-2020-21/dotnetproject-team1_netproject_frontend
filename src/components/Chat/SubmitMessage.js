@@ -1,5 +1,5 @@
 import React, {Component } from 'react'
-const BASE_URL = 'https://localhost:44363/api/';
+const BASE_URL = 'https://parlezwebapi.azurewebsites.net/api/';
 
 export class SubmitMessage extends Component {
   constructor(props){
@@ -39,8 +39,7 @@ export class SubmitMessage extends Component {
             console.log(JSON.stringify(json));
             this.setState({message:""});
            // Clear input. 
-            //fetchMessages();
-            this.props.didPost();
+           this.props.didPost();
         })
         // Data not retrieved.
         .catch(function (error) {
