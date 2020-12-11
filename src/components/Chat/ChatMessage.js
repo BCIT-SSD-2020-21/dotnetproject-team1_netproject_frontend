@@ -1,9 +1,27 @@
 import React, { Component } from 'react'
 import { UpTriangle, DownTriangle } from '../Icons'
 
+
+const BASE_URL = "https://localhost:44363/api/";
+
+//https://localhost:44363/api/Chat/mydelete?id=1
 export class ChatMessage extends Component {
+
+  deleteMessage = (id) => {
+    fetch(`${BASE_URL}Chat/mydelete?Id=${id}`, {
+      method: "DELETE",
+    })
+    .then((res) => res.json())
+    .then((json) => {
+      console.log('delete success')
+    })
+    .catch((err) => {
+      console.log(err)
+    })
+  };
+
   render() {
-    const {createdOn, messageText, userName } = this.props.message
+    const {createdOn, messageText, userName, id } = this.props.message
     return (
       <li>
         <div className="chat__container"> 
@@ -27,6 +45,7 @@ export class ChatMessage extends Component {
             <div className="messageMeta">
               {createdOn} &nbsp;•&nbsp;
                 <button
+                  onClick={this.deleteMessage(id)}
                   style={{color: "#E52646"}}
                 >
                     Delete
