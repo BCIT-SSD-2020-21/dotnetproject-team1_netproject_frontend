@@ -29,6 +29,9 @@ componentDidUpdate = (prevProps) => {
   fetchMessages = () => {
     fetch(`${BASE_URL}Chat`, {
       method: 'GET',
+      headers: {
+        'Authorization': `Bearer ${sessionStorage.getItem('bearer-token')}`
+      }
     })
       .then((res) => res.json())
       .then((data) => {
