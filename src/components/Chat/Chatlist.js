@@ -1,8 +1,7 @@
 import React, { Component } from 'react'
-import Chat from '../Chat'
 import ChatMessage from './ChatMessage'
 import ChatBlocker from './ChatBlocker'
-import { UpTriangle, DownTriangle } from '../Icons'
+
 
 
 const BASE_URL = "https://parlezwebapi.azurewebsites.net/api/";

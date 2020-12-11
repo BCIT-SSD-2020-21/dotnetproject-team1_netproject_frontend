@@ -4,7 +4,6 @@ import { UpTriangle, DownTriangle } from '../Icons'
 
 const BASE_URL = "https://parlezwebapi.azurewebsites.net/api/";
 
-//https://localhost:44363/api/Chat/mydelete?id=1
 export class ChatMessage extends Component {
 
   deleteMessage = (id) => {
@@ -28,7 +27,7 @@ export class ChatMessage extends Component {
         <div className="chat__container"> 
           <div className="chat__col left">
               <div className="img-container">
-                <img src="https://pfteza-chatapp.s3-us-west-1.amazonaws.com/iconmonstr-user-20.svg" alt="profile-image" />
+                <img src="https://pfteza-chatapp.s3-us-west-1.amazonaws.com/iconmonstr-user-20.svg" alt="profile" />
               </div>
               <div className="rating">
                   <span className="rating__container">

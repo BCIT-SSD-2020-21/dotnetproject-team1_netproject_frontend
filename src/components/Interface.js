@@ -14,7 +14,7 @@ import Registration from './Auth/Registration'
 import Chat from './Chat'
 
 
-import {Route, Switch, withRouter } from 'react-router-dom';
+import {Route, Switch } from 'react-router-dom';
 
 export class Interface extends Component {
   render() {
