@@ -45,7 +45,7 @@ export class ChatMessage extends Component {
             <div className="messageMeta">
               {createdOn} &nbsp;•&nbsp;
                 <button
-                  onClick={this.deleteMessage(id)}
+                  onClick={()=>{this.deleteMessage(id)}}
                   style={{color: "#E52646"}}
                 >
                     Delete
