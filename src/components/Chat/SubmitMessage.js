@@ -6,7 +6,6 @@ export class SubmitMessage extends Component {
   constructor(props){
     super(props)
     this.state = {
-     // id: '',
       userName: '',
       messageText: ''
     }
@@ -26,7 +25,6 @@ export class SubmitMessage extends Component {
           'Content-Type': 'application/json',
       },
         body: JSON.stringify({
-         // id: this.state.id,
             userName: this.state.userName,
             messageText: this.state.messageText,
             createdOn: new Date()
@@ -38,7 +36,7 @@ export class SubmitMessage extends Component {
         .then(json => {
             console.log(JSON.stringify(json));
              this.setState('');
-            // fetchMessages();
+          
              
         })
         
