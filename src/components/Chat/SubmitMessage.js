@@ -11,8 +11,8 @@ export class SubmitMessage extends Component {
   constructor(props){
     super(props)
     this.state = {
-      username: '',
-      message: ''
+      userName: '',
+      messageText: ''
     }
   }
 
@@ -25,10 +25,14 @@ export class SubmitMessage extends Component {
 
   submitMessages = () => {
     fetch(`${BASE_URL}Chat`, {
-        method: 'POST',
+        method: 'POST',   
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json',
+      },
         body: JSON.stringify({
-            userName: this.state.username,
-            messageText: this.state.message,
+            userName: this.state.userName,
+            messageText: this.state.messageText,
             createdOn: new Date()
         })
     })
@@ -37,7 +41,7 @@ export class SubmitMessage extends Component {
         
         .then(json => {
             console.log(JSON.stringify(json));
-            this.setState('');
+           // this.setState('');
         })
         
         .catch(function (error) {
@@ -51,23 +55,24 @@ export class SubmitMessage extends Component {
   render() {
       return (
         <section className="SubmitMessage">
+
           <div className="sm__wrap">
-            <form>
+          <form onSubmit={this.submitMessages}>
               <label id="sm__label">
                 <p>Alias:  </p>
               </label>
               <div className="fieldset">
-                <input type="text" placeholder="Username" id="username" value={this.state.username} onChange={(e) => this.onInputChange(e)}/>
+                <input type="text" placeholder="Username" id="userName" value={this.state.userName} onChange={(e) => this.onInputChange(e)}/>
               </div>
               <br/>
               <label id="sm__label">
                 <p>Message:</p>
               </label>
               <div className="fieldset">
-                <input type="text" placeholder="Aa" id="message" value={this.state.message} onChange={(e) => this.onInputChange(e)}/>
-                <form onSubmit={this.submitMessages}>  <div className="fieldset">
+                <input type="text" placeholder="Aa" id="messageText" value={this.state.messageText} onChange={(e) => this.onInputChange(e)}/>
+                  <div className="fieldset">
                       <input type="submit" id="submitMessages" name="submitMessages" value="Send"/>
-                    </div></form>
+                    </div>
               </div>
             </form>
           </div>
