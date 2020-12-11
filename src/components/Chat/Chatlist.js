@@ -20,6 +20,11 @@ componentDidMount = () => {
   this.fetchMessages()
 
 }
+componentDidUpdate = (prevProps) => {
+  if(prevProps.rerender !== this.props.rerender){
+    this.fetchMessages();
+  }
+}
 
   fetchMessages = () => {
     fetch(`${BASE_URL}Chat`, {
