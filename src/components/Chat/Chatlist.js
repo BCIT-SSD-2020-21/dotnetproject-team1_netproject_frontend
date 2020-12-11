@@ -8,23 +8,23 @@ import { UpTriangle, DownTriangle } from '../Icons'
 const BASE_URL = "https://localhost:44363/api/";
 
 export class Chatlist extends Component {
-  constructor(props){
+  constructor(props) {
     super(props)
     this.state = {
-      isAuthenticated: true, 
+      isAuthenticated: false,
       messages: []
     }
   }
 
-componentDidMount = () => {
-  this.fetchMessages()
+  componentDidMount = () => {
+    this.fetchMessages()
 
-}
-componentDidUpdate = (prevProps) => {
-  if(prevProps.rerender !== this.props.rerender){
-    this.fetchMessages();
   }
-}
+  componentDidUpdate = (prevProps) => {
+    if (prevProps.rerender !== this.props.rerender) {
+      this.fetchMessages();
+    }
+  }
 
   fetchMessages = () => {
     fetch(`${BASE_URL}Chat`, {
@@ -32,33 +32,30 @@ componentDidUpdate = (prevProps) => {
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log(data)
-        this.setState({messages:data})
+        this.setState({ messages: data })
       })
-      .catch((err) => {
-        console.log(err);
-      });
+      .catch((err) => { });
   };
 
   render() {
     const { isAuthenticated } = this.state;
-    const activeChat  = {
+    const activeChat = {
       overflowY: 'auto'
     }
-    const inactiveChat  = {
+    const inactiveChat = {
       overflowY: 'hidden'
     }
     return (
-        <div className="ChatList" style={ isAuthenticated ? activeChat : inactiveChat }>
-            { isAuthenticated ? '' : <ChatBlocker/>}
-            <ul className="Chat">
-              { this.state.messages.map((message, index)=>{
-                return( 
-                  <ChatMessage message={message} key={index} fetchMessages = {this.fetchMessages}/>
-                )
-              })}
-            </ul>
-        </div>
+      <div className="ChatList" style={isAuthenticated ? activeChat : inactiveChat}>
+        { isAuthenticated ? '' : <ChatBlocker />}
+        <ul className="Chat">
+          {this.state.messages.map((message, index) => {
+            return (
+              <ChatMessage message={message} key={index} fetchMessages={this.fetchMessages} />
+            )
+          })}
+        </ul>
+      </div>
     )
   }
 }

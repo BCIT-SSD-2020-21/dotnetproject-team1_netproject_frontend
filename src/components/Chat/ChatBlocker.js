@@ -7,7 +7,7 @@ export default function ChatBlocker() {
       <section className="cb__container">
         <div className="cb__wrap">
           <div className="svg-cont">
-            <ChatBubble/>
+            <ChatBubble />
           </div>
           <h2>Welcome to Parlez!</h2>
           <p>Please Log-in or Register to access the Parlez Application</p>
