@@ -1,11 +1,6 @@
-import React, { Component } from 'react'
-import Chat from '../Chat'
-import ChatMessage from './ChatMessage'
-import ChatBlocker from './ChatBlocker'
-import Chatlist from './Chatlist'
 
-
-const BASE_URL = "https://localhost:44363/api/";
+import React, {Component } from 'react'
+const BASE_URL = 'https://localhost:44363/api/';
 
 export class SubmitMessage extends Component {
   constructor(props){
@@ -22,7 +17,6 @@ export class SubmitMessage extends Component {
       [e.target.id]: e.target.value
     });
   }
-
 
   submitMessages = () => {
     fetch(`${BASE_URL}Chat`, {
@@ -52,8 +46,6 @@ export class SubmitMessage extends Component {
             console.log(error);
         }) 
 }
-
-
 
 
   render() {
