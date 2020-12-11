@@ -19,6 +19,7 @@ export class SubmitMessage extends Component {
 
   submitMessages = (e) => {
     e.preventDefault();
+    console.log('chat message sent')
     fetch(`${BASE_URL}Chat`, {
         method: 'POST',   
         headers: {
@@ -31,16 +32,12 @@ export class SubmitMessage extends Component {
             createdOn: new Date()
         })
     })
-    
     .then(res => res.json())
-        
         .then(json => {
             console.log(JSON.stringify(json));
-             this.setState('');
-          
-             
+             this.setState({messageText: ''});
+             this.props.didPost();   
         })
-        
         .catch(function (error) {
             console.log(error);
         }) 
