@@ -40,6 +40,7 @@ export class SubmitMessage extends Component {
             this.setState({message:""});
            // Clear input. 
             //fetchMessages();
+            this.props.didPost();
         })
         // Data not retrieved.
         .catch(function (error) {
