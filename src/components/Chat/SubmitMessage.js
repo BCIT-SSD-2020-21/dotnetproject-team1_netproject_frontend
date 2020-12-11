@@ -1,3 +1,4 @@
+
 import React, {Component } from 'react'
 const BASE_URL = 'https://parlezwebapi.azurewebsites.net/api/';
 
@@ -5,8 +6,9 @@ export class SubmitMessage extends Component {
   constructor(props){
     super(props)
     this.state = {
-      username: '',
-      message: '',
+     // id: '',
+      userName: '',
+      messageText: ''
     }
   }
 
@@ -16,62 +18,57 @@ export class SubmitMessage extends Component {
     });
   }
 
-
-  createMessage = async event => {
-      event.preventDefault(); 
-
-      // fetch
-      fetch(BASE_URL+'Chat', {
-        method: 'POST',
+  submitMessages = () => {
+    fetch(`${BASE_URL}Chat`, {
+        method: 'POST',   
         headers: {
-            'Accept': 'application/json',
-            'Content-Type': 'application/json',
-        },
+          'Accept': 'application/json',
+          'Content-Type': 'application/json',
+      },
         body: JSON.stringify({
-            UserName: this.state.username,  
-            MessageText: this.state.message
+         // id: this.state.id,
+            userName: this.state.userName,
+            messageText: this.state.messageText,
+            createdOn: new Date()
         })
     })
-    // Response received.
-    .then(response => response.json())
-        // Data retrieved.
+    
+    .then(res => res.json())
+        
         .then(json => {
             console.log(JSON.stringify(json));
-            this.setState({message:""});
-           // Clear input. 
-           this.props.didPost();
+             this.setState('');
+            // fetchMessages();
+             
         })
-        // Data not retrieved.
+        
         .catch(function (error) {
             console.log(error);
-        })
-  }
+        }) 
+}
 
-  onInputChange = e => {
-    this.setState({
-      [e.target.id]: e.target.value
-    });
-  }
 
-  
   render() {
       return (
         <section className="SubmitMessage">
+
           <div className="sm__wrap">
-            <form>
+          <form onSubmit={this.submitMessages}>
               <label id="sm__label">
-                <p>Alias:</p>
+                <p>Alias:  </p>
               </label>
               <div className="fieldset">
-                <input type="text" placeholder="Username" id="username" value={this.state.username} onChange={(e) => this.onInputChange(e)}/>
+                <input type="text" placeholder="Username" id="userName" value={this.state.userName} onChange={(e) => this.onInputChange(e)}/>
               </div>
               <br/>
               <label id="sm__label">
                 <p>Message:</p>
               </label>
               <div className="fieldset">
-                <input type="text" placeholder="Aa" id="message" value={this.state.message} onChange={(e) => this.onInputChange(e)}/>
-                <button className="button" onClick={this.createMessage}>Send</button>
+                <input type="text" placeholder="Aa" id="messageText" value={this.state.messageText} onChange={(e) => this.onInputChange(e)}/>
+                  <div className="fieldset">
+                      <input type="submit" id="submitMessages" name="submitMessages" value="Send"/>
+                    </div>
               </div>
             </form>
           </div>
