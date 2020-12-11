@@ -3,7 +3,7 @@ import React, {Component } from 'react'
 const BASE_URL = 'https://parlezwebapi.azurewebsites.net/api/';
 
 export class SubmitMessage extends Component {
-  constructor(props){
+  constructor(props) {
     super(props)
     this.state = {
       userName: '',
@@ -21,10 +21,10 @@ export class SubmitMessage extends Component {
     e.preventDefault();
     console.log('chat message sent')
     fetch(`${BASE_URL}Chat`, {
-        method: 'POST',   
-        headers: {
-          'Accept': 'application/json',
-          'Content-Type': 'application/json',
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
       },
         body: JSON.stringify({
             userName: this.state.userName,
@@ -43,10 +43,9 @@ export class SubmitMessage extends Component {
         }) 
 }
 
-
   render() {
-      return (
-        <section className="SubmitMessage">
+    return (
+      <section className="SubmitMessage">
 
           <div className="sm__wrap">
           <form onSubmit={(e) => this.submitMessages(e)}>
@@ -61,15 +60,13 @@ export class SubmitMessage extends Component {
                 <p>Message:</p>
               </label>
               <div className="fieldset">
-                <input type="text" placeholder="Aa" id="messageText" value={this.state.messageText} onChange={(e) => this.onInputChange(e)}/>
-                  <div className="fieldset">
-                      <input type="submit" id="submitMessages" name="submitMessages" value="Send"/>
-                    </div>
+                <input type="submit" id="submitMessages" name="submitMessages" value="Send" />
               </div>
-            </form>
-          </div>
-        </section>
-      )
+          
+          </form>
+        </div>
+      </section>
+    )
   }
 }
 

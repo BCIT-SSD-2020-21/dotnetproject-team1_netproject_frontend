@@ -21,21 +21,21 @@ export class Interface extends Component {
     return (
       <div className="main-wrap">
         <Header />
-          <main>
-            <Switch>
-                {/* CHAT ROUTE */}
-                <Route path="/" component={Chat} exact />
-                {/* ADMIN ROUTES */}
-                <Route path="/admin" component={Panel} />
-                <Route path="/admin/edituser/:id" component={EditUser} />
-                {/* PROFILE ROUTES */}
-                <Route path="/profile/:id" component={ViewProfile} />
-                <Route path="/profile/update/:id" component={UpdateProfile} />
-                {/* AUTH ROUTES */}
-                <Route path="/login" component={Login} />
-                <Route path="/register" component={Registration} />
-            </Switch>
-          </main>
+        <main>
+          <Switch>
+            {/* CHAT ROUTE */}
+            <Route path="/" component={Chat} exact />
+            {/* ADMIN ROUTES */}
+            <Route path="/admin" component={Panel} />
+            <Route path="/admin/edituser/:id" component={EditUser} />
+            {/* PROFILE ROUTES */}
+            <Route path="/profile/:id" component={ViewProfile} />
+            <Route path="/profile/update/:id" component={UpdateProfile} />
+            {/* AUTH ROUTES */}
+            <Route path="/login" component={Login} />
+            <Route path="/register" component={Registration} />
+          </Switch>
+        </main>
       </div>
     )
   }
