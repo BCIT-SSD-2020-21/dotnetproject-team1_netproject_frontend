@@ -22,8 +22,10 @@ export class SubmitMessage extends Component {
     fetch(`${BASE_URL}Chat`, {
         method: 'POST',   
         headers: {
+          'Authorization': `Bearer ${sessionStorage.getItem('bearer-token')}`,
           'Accept': 'application/json',
           'Content-Type': 'application/json',
+          
       },
         body: JSON.stringify({
          // id: this.state.id,
