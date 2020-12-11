@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom';
-import { MailIcon, LockIcon, PictureIcon } from '../Icons'
+import { MailIcon, LockIcon } from '../Icons'
 
 export class Login extends Component {
   render() {

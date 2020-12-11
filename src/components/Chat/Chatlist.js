@@ -11,7 +11,7 @@ export class Chatlist extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      isAuthenticated: false,
+      isAuthenticated: false, 
       messages: []
     }
   }
@@ -29,6 +29,9 @@ export class Chatlist extends Component {
   fetchMessages = () => {
     fetch(`${BASE_URL}Chat`, {
       method: 'GET',
+      headers: {
+        'Authorization': `Bearer ${sessionStorage.getItem('bearer-token')}`
+      }
     })
       .then((res) => res.json())
       .then((data) => {
