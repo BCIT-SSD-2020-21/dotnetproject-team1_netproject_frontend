@@ -54,7 +54,7 @@ componentDidUpdate = (prevProps) => {
             <ul className="Chat">
               { this.state.messages.map((message, index)=>{
                 return( 
-                  <ChatMessage message={message} key={index}/>
+                  <ChatMessage message={message} key={index} fetchMessages = {this.fetchMessages}/>
                 )
               })}
             </ul>

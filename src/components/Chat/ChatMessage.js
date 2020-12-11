@@ -14,6 +14,7 @@ export class ChatMessage extends Component {
     .then((res) => res.json())
     .then((json) => {
       console.log('delete success')
+      this.props.fetchMessages()
     })
     .catch((err) => {
       console.log(err)
