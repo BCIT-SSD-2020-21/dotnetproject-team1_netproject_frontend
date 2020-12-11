@@ -3,12 +3,12 @@ import ChatMessage from './ChatMessage'
 import ChatBlocker from './ChatBlocker'
 
 
-
+const messagesEndRef = React.createRef()
 const BASE_URL = "https://parlezwebapi.azurewebsites.net/api/";
-
 export class Chatlist extends Component {
   constructor(props){
     super(props)
+    this.messagesEndRef = messagesEndRef
     this.state = {
       isAuthenticated: true, 
       messages: []
@@ -17,11 +17,13 @@ export class Chatlist extends Component {
 
 componentDidMount = () => {
   this.fetchMessages()
+  this.scrollToBottom()
 
 }
 componentDidUpdate = (prevProps) => {
   if(prevProps.rerender !== this.props.rerender){
     this.fetchMessages();
+    this.scrollToBottom()
   }
 }
 
@@ -38,6 +40,14 @@ componentDidUpdate = (prevProps) => {
         console.log(err);
       });
   };
+
+  scrollToBottom = () => {
+    const ChatList = document.querySelector('.ChatList')
+    const Chat = document.querySelector('.ChatList')
+    setTimeout(() => {
+      ChatList.scrollTop = Chat.scrollHeight;
+    }, 500)
+  }
 
   render() {
     const { isAuthenticated } = this.state;
