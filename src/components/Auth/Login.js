@@ -89,8 +89,10 @@ fetch('https://localhost:44363/Auth/Login', {
                         <button className="submit">Login</button>
                     </div>
           </form>
-         
           </div>
+          <div className="modal-footer">
+                <p>Don't have an account? <Link to="/register">Sign up</Link></p>
+            </div>
         </div>
       </section>
     )
