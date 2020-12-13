@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
+import { MailIcon, LockIcon, PictureIcon } from '../Icons'
 
 class Register extends Component { 
   //state variables for form inputs and errors
@@ -53,12 +55,14 @@ class Register extends Component {
 
   render() {
     return (
-      <section className="section auth">
-        <div className="container">
-          <h1>Register</h1>
+      <section className="Login">
+        <div className="form__container">
+        <div className="modal-form">
+          <div className="modal-head">
+          <h3 className="modal-title">Register</h3>
           <form onSubmit={this.handleSubmit}>
-            <div className="field">
-              <p className="control">
+            <div className="fieldset">
+            <MailIcon />
                 <input 
                   className="input" 
                   type="email"
@@ -67,10 +71,11 @@ class Register extends Component {
                   value={this.state.email}
                   onChange={this.onInputChange}
                 />
-              </p>
+              
             </div>
-            <div className="field">
-              <p className="control">
+
+            <div className="fieldset">
+            <LockIcon />
                 <input 
                   className="input" 
                   type="password"
@@ -79,10 +84,10 @@ class Register extends Component {
                   value={this.state.password}
                   onChange={this.onInputChange}
                 />
-              </p>
             </div>
-            <div className="field">
-              <p className="control">
+            
+            <div className="fieldset">
+            <LockIcon />
                 <input 
                   className="input" 
                   type="password"
@@ -91,14 +96,26 @@ class Register extends Component {
                   value={this.state.confirmpassword}
                   onChange={this.onInputChange}
                 />
-              </p>
             </div>
-            <div className="field">
-              <p className="control">
-                <button className="button is-success">Register</button>
-              </p>
+
+            <div className="fieldset label">
+                <label>Upload a profile picture:</label>
+            </div>
+            <div className="fieldset">
+                <PictureIcon /><input type="file" placeholder="upload profile"/>
+            </div>
+
+            <div className="fieldset submit">
+                <button className="submit">Register</button>
             </div>
           </form>
+
+          <div className="modal-footer">
+                  <p>Already have an account? <Link to="/login">Login</Link></p>
+          </div>
+
+            </div>
+          </div>
         </div>
       </section>
     );
