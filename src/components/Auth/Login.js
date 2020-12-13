@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
+import { MailIcon, LockIcon, PictureIcon } from '../Icons'
 
 class Login extends Component {
   state = {
@@ -52,12 +54,15 @@ fetch('https://localhost:44363/Auth/Login', {
 
   render() {
     return (
-      <section className="section auth">
-        <div className="container">
-          <h1>Log in</h1>
+      <section className="Login">
+         <div className="form__container">
+            <div className="modal-form">
+              <div className="modal-head">
+                    <h3 className="modal-title">Login</h3>
+              </div>
           <form onSubmit={this.handleSubmit}>
-            <div className="field">
-              <p className="control">
+            <div className="fieldset">
+                <MailIcon />
                 <input 
                   className="input" 
                   type="text"
@@ -66,10 +71,10 @@ fetch('https://localhost:44363/Auth/Login', {
                   value={this.state.email}
                   onChange={this.onInputChange}
                 />
-              </p>
             </div>
-            <div className="field">
-              <p className="control">
+
+            <div className="fieldset">
+                <LockIcon />
                 <input 
                   className="input" 
                   type="password"
@@ -78,16 +83,14 @@ fetch('https://localhost:44363/Auth/Login', {
                   value={this.state.password}
                   onChange={this.onInputChange}
                 />
-              </p>
             </div>
-            <div className="field">
-              <p className="control">
-                <button className="button is-success">
-                  Login
-                </button>
-              </p>
-            </div>
+
+            <div className="fieldset submit">
+                        <button className="submit">Login</button>
+                    </div>
           </form>
+         
+          </div>
         </div>
       </section>
     )
