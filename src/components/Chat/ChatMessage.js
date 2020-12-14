@@ -1,10 +1,20 @@
-import React, { Component } from 'react'
+import React, { Component, Fragment } from 'react'
 import { UpTriangle, DownTriangle } from '../Icons'
 
 
 const BASE_URL = "https://localhost:44363/api/";
 
 export class ChatMessage extends Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      isAuthenticated: false,
+    }
+  }
+
+  componentDidMount(){
+    this.checkAuthentication();
+  }
 
   deleteMessage = (id) => {
     fetch(`${BASE_URL}Chat/mydelete?Id=${id}`, {
@@ -20,8 +30,37 @@ export class ChatMessage extends Component {
       .catch((err) => { })
   };
 
+  handleLogout = () => {
+    this.setState({ isAuthenticated: false, userName: '', messageText: '' }, () => {
+      sessionStorage.clear()
+    })
+  }
+
+  checkAuthentication(){
+    const userToken = sessionStorage.getItem('bearer-token')
+    const userName = sessionStorage.getItem('authUserName')
+    if( userToken && userName){
+      this.setState({isAuthenticated: true, userName: userName})
+    }else{
+      this.handleLogout()
+    }
+  }
+
+
   render() {
     const { createdOn, messageText, userName, id } = this.props.message
+    const { isAuthenticated } = this.state
+    const deleteButton = (
+      <Fragment>
+        •&nbsp;
+        <button
+        onClick={() => { this.deleteMessage(id) }}
+        style={{ color: "#E52646" }}
+        >
+          Delete
+        </button>
+      </Fragment>
+    )
     return (
       <li>
         <div className="chat__container">
@@ -43,13 +82,8 @@ export class ChatMessage extends Component {
               <span className="message">{messageText}</span>
             </div>
             <div className="messageMeta">
-              {createdOn} &nbsp;•&nbsp;
-                <button
-                onClick={() => { this.deleteMessage(id) }}
-                style={{ color: "#E52646" }}
-              >
-                Delete
-                </button>
+              {createdOn} &nbsp;
+              { isAuthenticated ? deleteButton : null}
             </div>
           </div>
         </div>
