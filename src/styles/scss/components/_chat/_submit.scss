@@ -4,6 +4,43 @@
 .SubmitMessage {
   border-top: 1px solid $dark-grey;
   background: $light-black;
+  position: relative;
+
+  .em__container {
+    position: absolute;
+    bottom: calc(100% + 7px);
+    left: 50%;
+    transform: translateX(-50%);
+    background: $light-ruby;
+    padding: 14px;
+
+    &::after {
+      content: "";
+      position: absolute;
+      width: 0; 
+      height: 0; 
+      border-left: 7px solid transparent;
+      border-right: 7px solid transparent;
+      border-top: 7px solid $light-ruby;
+      left: 50%;
+      transform: translateX(-50%);
+      top: 100%;
+    }
+
+    .em__wrap {
+      display: flex;
+    }
+
+    svg {
+      fill: white;
+    }
+
+    p {
+      color: white;
+      text-align: left;
+      margin-left: 14px;
+    }
+  }
 
   .sm__wrap {
     padding: 14px 20px;

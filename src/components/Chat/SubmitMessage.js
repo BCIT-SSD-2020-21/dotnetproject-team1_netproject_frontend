@@ -1,5 +1,6 @@
 
 import React, { Component, Fragment } from 'react'
+import { CautionIcon } from '../Icons'
 const BASE_URL = 'https://localhost:44363/api/';
 
 export class SubmitMessage extends Component {
@@ -89,7 +90,7 @@ export class SubmitMessage extends Component {
         message: '',
         active: false
       }}) 
-    }, 3000)
+    }, 4000)
   }
 
   checkAuthentication(){
@@ -130,7 +131,12 @@ export class SubmitMessage extends Component {
     const errorMessage = (
       <Fragment>
         <div className='em__container'>
-          <p>{ error.message }</p>
+          <div className="em__wrap">
+            <div className="svg-cont">
+              <CautionIcon />
+            </div>
+            <p>{ error.message }</p>
+          </div>
         </div>
       </Fragment>
     )
