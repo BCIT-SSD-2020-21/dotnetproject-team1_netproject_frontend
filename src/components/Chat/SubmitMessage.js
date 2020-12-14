@@ -1,5 +1,5 @@
 
-import React, {Component } from 'react'
+import React, { Component, Fragment } from 'react'
 const BASE_URL = 'https://localhost:44363/api/';
 
 export class SubmitMessage extends Component {
@@ -7,7 +7,18 @@ export class SubmitMessage extends Component {
     super(props)
     this.state = {
       userName: '',
-      messageText: ''
+      messageText: '',
+      isAuthenticated: false,
+    }
+  }
+
+  componentDidMount(){
+    this.checkAuthentication();
+  }
+
+  componentDidUpdate(prevProps){
+    if(prevProps.authToggle !== this.props.authToggle){
+      this.checkAuthentication();
     }
   }
 
@@ -43,20 +54,51 @@ export class SubmitMessage extends Component {
         .catch(function (error) {
             console.log(error);
         }) 
-}
+  }
+
+  handleLogout = () => {
+    console.log('attempt logout')
+    this.setState({ isAuthenticated: false, userName: '', messageText: '' }, () => {
+      sessionStorage.clear()
+    })
+  }
+
+  checkAuthentication(){
+    const userToken = sessionStorage.getItem('bearer-token')
+    const userName = sessionStorage.getItem('authUserName')
+    if( userToken && userName){
+      this.setState({isAuthenticated: true, userName: userName})
+    }else{
+      this.handleLogout()
+    }
+  }
+
 
   render() {
+    const { isAuthenticated, userName } = this.state;
+    const authInput = (
+      <Fragment>
+        <label id="sm__label">
+          <p>Alias: { userName } </p>
+        </label>
+      </Fragment>
+    )
+
+    const guestInput = (
+      <Fragment>
+        <label id="sm__label">
+          <p>Alias:  </p>
+        </label>
+        <div className="fieldset">
+          <input type="text" placeholder="Username" id="userName" value={this.state.userName} onChange={(e) => this.onInputChange(e)}/>
+        </div>
+      </Fragment>
+    )
     return (
       <section className="SubmitMessage">
-
           <div className="sm__wrap">
           <form onSubmit={(e) => this.submitMessages(e)}>
-              <label id="sm__label">
-                <p>Alias:  </p>
-              </label>
-              <div className="fieldset">
-                <input type="text" placeholder="Username" id="userName" value={this.state.userName} onChange={(e) => this.onInputChange(e)}/>
-              </div>
+              { isAuthenticated ? authInput : guestInput }
               <br/>
               <label id="sm__label">
                 <p>Message:</p>
@@ -65,7 +107,6 @@ export class SubmitMessage extends Component {
                 <input type="text" placeholder="Aa" id="messageText" value={this.state.message} onChange={(e) => this.onInputChange(e)}/>
                 <button>Send</button>
               </div>
-          
           </form>
         </div>
       </section>

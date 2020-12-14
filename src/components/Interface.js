@@ -17,14 +17,29 @@ import Chat from './Chat'
 import {Route, Switch } from 'react-router-dom';
 
 export class Interface extends Component {
+  constructor(props){
+    super(props);
+    this.state = {
+      authToggle: false,
+    }
+  }
+
+  toggleAuth = () => {
+    this.setState({authToggle: !this.state.authToggle})
+  }
+
   render() {
+    const { authToggle } = this.state
     return (
       <div className="main-wrap">
-        <Header />
+        <Header toggleAuth={this.toggleAuth}/>
         <main>
           <Switch>
             {/* CHAT ROUTE */}
-            <Route path="/" component={Chat} exact />
+            {/* <Route path="/" component={() => <Chat authToggle={authToggle} />} exact /> */}
+            <Route path="/" render={(props) => (
+              <Chat {...props} authToggle={authToggle}/>
+            )} exact />
             {/* ADMIN ROUTES */}
             <Route path="/admin" component={Panel} />
             <Route path="/admin/edituser/:id" component={EditUser} />

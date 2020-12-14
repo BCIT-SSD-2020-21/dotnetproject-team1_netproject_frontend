@@ -12,12 +12,14 @@ export class Chat extends Component {
     didPost = () => {
         this.setState({ rerender: !this.state.rerender })
     }
+
     render() {
         const { rerender } = this.state
+        const { authToggle } = this.props
         return (
             <div>
                 <Chatlist rerender={rerender} />
-                <SubmitMessage didPost={this.didPost} />
+                <SubmitMessage didPost={this.didPost} authToggle={authToggle} />
             </div>
         )
     }
