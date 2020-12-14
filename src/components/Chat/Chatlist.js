@@ -4,7 +4,7 @@ import ChatBlocker from './ChatBlocker'
 
 
 
-const BASE_URL = "https://parlezwebapi.azurewebsites.net/api/";
+const BASE_URL = "https://localhost:44363/api/";
 
 export class Chatlist extends Component {
   constructor(props) {

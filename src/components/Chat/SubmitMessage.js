@@ -1,6 +1,6 @@
 
 import React, {Component } from 'react'
-const BASE_URL = 'https://parlezwebapi.azurewebsites.net/api/';
+const BASE_URL = 'https://localhost:44363/api/';
 
 export class SubmitMessage extends Component {
   constructor(props) {

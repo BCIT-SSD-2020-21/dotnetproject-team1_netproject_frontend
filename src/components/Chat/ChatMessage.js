@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { UpTriangle, DownTriangle } from '../Icons'
 
 
-const BASE_URL = "https://parlezwebapi.azurewebsites.net/api/";
+const BASE_URL = "https://localhost:44363/api/";
 
 export class ChatMessage extends Component {
 

@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import { MailIcon, LockIcon } from '../Icons'
-
+import { MailIcon, LockIcon, PictureIcon } from '../Icons'
 
 class Login extends Component {
   state = {
