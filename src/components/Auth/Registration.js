@@ -24,14 +24,7 @@ export class Registration extends Component {
 
               <div className="fieldset">
                 <LockIcon />
-                <input type="password" id="password" placeholder="confirm password" name="password" />
-              </div>
-
-              <div className="fieldset label">
-                <label>Upload a profile picture:</label>
-              </div>
-              <div className="fieldset">
-                <PictureIcon /><input type="file" placeholder="upload profile" />
+                <input type="password" id="confirmPassword" placeholder="confirm password" name="password" />
               </div>
 
               <div className="fieldset submit">

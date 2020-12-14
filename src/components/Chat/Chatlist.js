@@ -2,8 +2,6 @@ import React, { Component } from 'react'
 import ChatMessage from './ChatMessage'
 import ChatBlocker from './ChatBlocker'
 
-
-
 const BASE_URL = "https://parlezwebapi.azurewebsites.net/api/";
 
 export class Chatlist extends Component {
