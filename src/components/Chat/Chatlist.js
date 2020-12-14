@@ -17,6 +17,7 @@ export class Chatlist extends Component {
 
   componentDidMount = () => {
     this.fetchMessages()
+    this.scrollToBottom()
 
   }
   componentDidUpdate = (prevProps) => {
@@ -34,10 +35,18 @@ export class Chatlist extends Component {
     })
       .then((res) => res.json())
       .then((data) => {
-        this.setState({ messages: data })
+        this.setState({ messages: data }, () => {this.scrollToBottom()})
       })
       .catch((err) => { });
   };
+
+  scrollToBottom = () => {
+    const ChatList = document.querySelector('.ChatList')
+    const Chat = document.querySelector('.Chat')
+    setTimeout(() => {
+      ChatList.scrollTop = Chat.scrollHeight;
+    }, 500)
+  }
 
   render() {
     const { isAuthenticated } = this.state;
