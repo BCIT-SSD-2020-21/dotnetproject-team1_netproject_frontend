@@ -97,14 +97,6 @@ class Register extends Component {
                   onChange={this.onInputChange}
                 />
             </div>
-
-            <div className="fieldset label">
-                <label>Upload a profile picture:</label>
-            </div>
-            <div className="fieldset">
-                <PictureIcon /><input type="file" placeholder="upload profile"/>
-            </div>
-
             <div className="fieldset submit">
                 <button className="submit">Register</button>
             </div>
