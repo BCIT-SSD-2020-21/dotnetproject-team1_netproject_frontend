@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { MailIcon, LockIcon } from '../Icons'
+import { withRouter } from 'react-router-dom';
 
 class Login extends Component {
   state = {
@@ -33,6 +34,7 @@ fetch('https://localhost:44363/Auth/Login', {
   if(json["status"]=="OK") {
       sessionStorage.setItem('bearer-token', json["token"]);
       sessionStorage.setItem('authUserName', json["username"])
+      this.props.history.push("/")
       console.log(sessionStorage.getItem('bearer-token'))
   }
   else {
@@ -100,4 +102,4 @@ fetch('https://localhost:44363/Auth/Login', {
   }
 }
 
-export default Login;
+export default withRouter(Login);
