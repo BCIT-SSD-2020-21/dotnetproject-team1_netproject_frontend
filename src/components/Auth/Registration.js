@@ -105,11 +105,10 @@ class Register extends Component {
             </div>
           </form>
 
+            </div>
+          </div>
           <div className="modal-footer">
                   <p>Already have an account? <Link to="/login">Login</Link></p>
-          </div>
-
-            </div>
           </div>
         </div>
       </section>
