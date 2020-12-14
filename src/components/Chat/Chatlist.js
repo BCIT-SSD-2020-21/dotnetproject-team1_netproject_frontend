@@ -2,8 +2,6 @@ import React, { Component } from 'react'
 import ChatMessage from './ChatMessage'
 import ChatBlocker from './ChatBlocker'
 
-
-
 const BASE_URL = "https://parlezwebapi.azurewebsites.net/api/";
 
 export class Chatlist extends Component {
@@ -35,10 +33,34 @@ export class Chatlist extends Component {
     })
       .then((res) => res.json())
       .then((data) => {
-        this.setState({ messages: data }, () => {this.scrollToBottom()})
+        const mappedData = data.map((d) => {
+          return {
+            ...d, 
+            createdOn: this.parseDate(d.createdOn)
+          }
+        })
+        this.setState({ messages: mappedData }, () => {this.scrollToBottom()})
       })
       .catch((err) => { });
   };
+
+  parseDate = (date) => {
+    // Parse data into a date string
+    const parsedDate = Date.parse(date)
+    // if can't parse, return the original string
+    if (!parsedDate) return date
+    // Make parsedDate into a new Date object
+    const d = new Date(parsedDate)
+    // config date options
+    const dateOptions = {year: 'numeric', month: 'long', day: '2-digit'}
+    const timeOptions = { hour: 'numeric', minute: 'numeric'}
+    // Set current date and time
+    const currDate = new Intl.DateTimeFormat('en', dateOptions).format(d)
+    const time = new Intl.DateTimeFormat('en', timeOptions).format(d)
+    // Return formatted date string
+    const dateString = `${currDate} at ${time}`
+    return dateString
+  }
 
   scrollToBottom = () => {
     const ChatList = document.querySelector('.ChatList')
