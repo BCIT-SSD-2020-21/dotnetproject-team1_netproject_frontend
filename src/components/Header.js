@@ -32,7 +32,6 @@ export class Header extends Component {
   }
 
   handleLogout = () => {
-    console.log('attempt logout')
     this.setState({ isAuthenticated: false}, () => {
       this.props.toggleAuth();
       sessionStorage.clear()
