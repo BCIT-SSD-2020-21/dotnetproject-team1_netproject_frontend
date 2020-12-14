@@ -17,6 +17,13 @@ export class Header extends Component {
     }
   }
 
+  handleLogout = () => {
+    console.log('attempt logout')
+    this.setState({ isAuthenticated: false}, () => {
+      sessionStorage.clear()
+    })
+  }
+
   render() {
     return (
       <header>
@@ -24,7 +31,7 @@ export class Header extends Component {
           <div className="header__pseudo">
             <h3 className="white"><Link to="/">PARLEZ</Link></h3>
             <ul className="header__navigation">
-              <li><button>Logout</button></li>
+              <li><button onClick={() => this.handleLogout()}>Logout</button></li>
               <li><Link to="/login">Login</Link></li>
               <li><Link to="/register">Register</Link></li>
             </ul>
