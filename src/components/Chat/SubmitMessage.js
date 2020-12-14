@@ -21,10 +21,12 @@ export class SubmitMessage extends Component {
     e.preventDefault();
     console.log('chat message sent')
     fetch(`${BASE_URL}Chat`, {
-      method: 'POST',
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json',
+        method: 'POST',   
+        headers: {
+          'Authorization': `Bearer ${sessionStorage.getItem('bearer-token')}`,
+          'Accept': 'application/json',
+          'Content-Type': 'application/json',
+          
       },
         body: JSON.stringify({
             userName: this.state.userName,

@@ -9,6 +9,9 @@ export class ChatMessage extends Component {
   deleteMessage = (id) => {
     fetch(`${BASE_URL}Chat/mydelete?Id=${id}`, {
       method: "DELETE",
+      headers: {
+        'Authorization': `Bearer ${sessionStorage.getItem('bearer-token')}`
+      }
     })
       .then((res) => res.json())
       .then((json) => {
