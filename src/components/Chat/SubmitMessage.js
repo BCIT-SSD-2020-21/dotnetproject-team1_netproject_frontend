@@ -47,7 +47,6 @@ export class SubmitMessage extends Component {
     })
     .then(res => res.json())
         .then(json => {
-            console.log(JSON.stringify(json));
              this.setState({messageText: ''});
              this.props.didPost();   
         })
@@ -57,7 +56,6 @@ export class SubmitMessage extends Component {
   }
 
   handleLogout = () => {
-    console.log('attempt logout')
     this.setState({ isAuthenticated: false, userName: '', messageText: '' }, () => {
       sessionStorage.clear()
     })
@@ -75,12 +73,15 @@ export class SubmitMessage extends Component {
 
 
   render() {
-    const { isAuthenticated, userName } = this.state;
+    const { isAuthenticated } = this.state;
     const authInput = (
       <Fragment>
         <label id="sm__label">
-          <p>Alias: { userName } </p>
+          <p>Alias:</p>
         </label>
+        <div className="fieldset">
+          <input type="text" placeholder="Username" id="userName" value={this.state.userName} onChange={() => { return null } }/>
+        </div>
       </Fragment>
     )
 
@@ -104,7 +105,9 @@ export class SubmitMessage extends Component {
                 <p>Message:</p>
               </label>
               <div className="fieldset">
-                <input type="text" placeholder="Aa" id="messageText" value={this.state.message} onChange={(e) => this.onInputChange(e)}/>
+                <textarea rows="2" type="text" placeholder="Aa" id="messageText" value={this.state.message} onChange={(e) => this.onInputChange(e)}/>
+              </div>
+              <div className="fieldset submit">
                 <button>Send</button>
               </div>
           </form>

@@ -6,21 +6,32 @@
   background: $light-black;
 
   .sm__wrap {
-    padding: 7px 20px;
-    padding-bottom: 14px;
+    padding: 14px 20px;
   }
 
   form label,
-  form input {
+  form input,
+  form textarea  {
     width: 100%;
   }
 
-  form input {
-    padding: 7px;
-    border: 1px solid $dark-grey;
+  form input,
+  form textarea {
+    padding: 7px 0;
+    padding-bottom: 14px;
+    border: unset;
+    border-bottom: 1px solid $dark-grey;
     background: $light-black;
     color: white;
     outline: none;
+    @include body-light;
+    font-size: 17px;
+
+    &:focus,
+    &:active {
+      border-bottom: 1px solid $light-ruby;
+      color: $light-ruby;
+    }
   }
 
   form button {
@@ -40,11 +51,26 @@
 
   form label p {
     text-align: left;
-    color: white;
+    color: $dark-grey;
+    text-transform: uppercase;
+    font-weight: 700;
+    letter-spacing: 0.01em;
     margin-bottom: 7px;
+    font-size: 12px;
   }
 
   .fieldset {
     display: flex;
+    
+    &.submit {
+      justify-content: flex-end;
+      margin-top: 30px;
+      
+      button {
+        width: 100%;
+        padding: 10px;
+        font-size: 17px;
+      }
+    }
   }
 }
