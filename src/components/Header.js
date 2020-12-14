@@ -1,5 +1,5 @@
 import React, { Component, Fragment } from 'react'
-import { Link } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 import { UserIcon } from './Icons'
 
 export class Header extends Component {
@@ -12,10 +12,22 @@ export class Header extends Component {
   }
 
   componentDidMount(){
+    this.checkAuthentication();
+  }
+
+  componentDidUpdate(prevProps){
+    if(prevProps.location.pathname !== this.props.location.pathname){
+      this.checkAuthentication();
+    }
+  }
+
+  checkAuthentication(){
     const userToken = sessionStorage.getItem('bearer-token')
     const userName = sessionStorage.getItem('authUserName')
     if( userToken && userName){
       this.setState({isAuthenticated: true, username: userName})
+    }else{
+      this.handleLogout()
     }
   }
 
@@ -59,4 +71,4 @@ export class Header extends Component {
   }
 }
 
-export default Header
+export default withRouter(Header)
