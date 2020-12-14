@@ -35,7 +35,6 @@ fetch('https://localhost:44363/Auth/Login', {
       sessionStorage.setItem('bearer-token', json["token"]);
       sessionStorage.setItem('authUserName', json["username"])
       this.props.history.push("/")
-      console.log(sessionStorage.getItem('bearer-token'))
   }
   else {
       // error message handling

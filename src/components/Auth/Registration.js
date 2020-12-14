@@ -31,13 +31,11 @@ class Register extends Component {
 .then(response => response.json())
 // Data retrieved.
 .then(json => {
-    console.log(JSON.stringify(json));
     // Store token with session data.
     if(json["status"]=="OK") {
         sessionStorage.setItem('bearer-token', json["token"]);
         sessionStorage.setItem('authUserName', json["username"])
         this.props.history.push("/")
-        console.log(sessionStorage.getItem('bearer-token'))
     }
     else {
         // error message handling
