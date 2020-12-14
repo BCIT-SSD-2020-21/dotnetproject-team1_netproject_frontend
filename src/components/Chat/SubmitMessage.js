@@ -9,6 +9,10 @@ export class SubmitMessage extends Component {
       userName: '',
       messageText: '',
       isAuthenticated: false,
+      error: {
+        message: '',
+        active: false,
+      },
     }
   }
 
@@ -16,9 +20,12 @@ export class SubmitMessage extends Component {
     this.checkAuthentication();
   }
 
-  componentDidUpdate(prevProps){
+  componentDidUpdate(prevProps, prevState){
     if(prevProps.authToggle !== this.props.authToggle){
       this.checkAuthentication();
+    }
+    if(prevState.error.active !== this.state.error.active){
+      this.resetErrors();
     }
   }
 
@@ -30,14 +37,12 @@ export class SubmitMessage extends Component {
 
   submitMessages = (e) => {
     e.preventDefault();
-    console.log('chat message sent')
     fetch(`${BASE_URL}Chat`, {
         method: 'POST',   
         headers: {
           'Authorization': `Bearer ${sessionStorage.getItem('bearer-token')}`,
           'Accept': 'application/json',
           'Content-Type': 'application/json',
-          
       },
         body: JSON.stringify({
             userName: this.state.userName,
@@ -46,7 +51,7 @@ export class SubmitMessage extends Component {
         })
     })
     .then(res => res.json())
-        .then(json => {
+        .then(() => {
              this.setState({messageText: ''});
              this.props.didPost();   
         })
@@ -55,10 +60,36 @@ export class SubmitMessage extends Component {
         }) 
   }
 
+  validateMessage = (e) => {
+    e.preventDefault();
+    const { messageText, userName } = this.state;
+    if(!messageText && !userName){
+      this.setState({error: {message: 'You cannot submit a message without message content or an alias.', active: true,} })
+      return null
+    }else if(!messageText){
+      this.setState({error: {message: 'You cannot submit a message without message content.', active: true,} })
+      return null
+    }else if(!userName){
+      this.setState({error: {message: 'You cannot submit a message without an alias.', active: true,} })
+      return null
+    }else{
+      this.submitMessages(e)
+    }
+  }
+
   handleLogout = () => {
     this.setState({ isAuthenticated: false, userName: '', messageText: '' }, () => {
       sessionStorage.clear()
     })
+  }
+
+  resetErrors = () => {
+    setTimeout(() => {
+      this.setState({ error: {
+        message: '',
+        active: false
+      }}) 
+    }, 3000)
   }
 
   checkAuthentication(){
@@ -73,7 +104,7 @@ export class SubmitMessage extends Component {
 
 
   render() {
-    const { isAuthenticated } = this.state;
+    const { isAuthenticated, error } = this.state;
     const authInput = (
       <Fragment>
         <label id="sm__label">
@@ -95,10 +126,20 @@ export class SubmitMessage extends Component {
         </div>
       </Fragment>
     )
+
+    const errorMessage = (
+      <Fragment>
+        <div className='em__container'>
+          <p>{ error.message }</p>
+        </div>
+      </Fragment>
+    )
+
     return (
       <section className="SubmitMessage">
+          { error.active ? errorMessage : ''}
           <div className="sm__wrap">
-          <form onSubmit={(e) => this.submitMessages(e)}>
+          <form onSubmit={(e) => this.validateMessage(e)}>
               { isAuthenticated ? authInput : guestInput }
               <br/>
               <label id="sm__label">
