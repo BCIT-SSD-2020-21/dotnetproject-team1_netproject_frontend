@@ -29,8 +29,19 @@ header {
       display: flex;
       flex-direction: column;
       justify-content: space-around;
-      margin-left: 14px;
+      margin-left: 20px;
       @include body-light;
+    }
+
+    ul li.icon {
+      flex-direction: row;
+      justify-content: space-between;
+      gap: 10px;
+      line-height: 28px;
+
+      svg {
+        fill: white;
+      }
     }
 
     ul li button,
