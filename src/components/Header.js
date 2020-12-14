@@ -11,7 +11,10 @@ export class Header extends Component {
 
   componentDidMount(){
     const userToken = sessionStorage.getItem('bearer-token')
-    const userName = sessionStorage.getItem('username')
+    const userName = sessionStorage.getItem('authUserName')
+    if( userToken && userName){
+      this.setState({isAuthenticated: true})
+    }
   }
 
   render() {
@@ -21,7 +24,7 @@ export class Header extends Component {
           <div className="header__pseudo">
             <h3 className="white"><Link to="/">PARLEZ</Link></h3>
             <ul className="header__navigation">
-              <li><button>Login</button></li>
+              <li><button>Logout</button></li>
               <li><Link to="/login">Login</Link></li>
               <li><Link to="/register">Register</Link></li>
             </ul>
