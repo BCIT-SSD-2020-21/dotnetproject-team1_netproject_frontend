@@ -74,6 +74,7 @@ export class Chatlist extends Component {
 
   render() {
     const { isAuthenticated } = this.state;
+    const { authToggle } = this.props;
     const activeChat = {
       overflowY: 'auto'
     }
@@ -86,7 +87,7 @@ export class Chatlist extends Component {
         <ul className="Chat">
           {this.state.messages.map((message, index) => {
             return (
-              <ChatMessage message={message} key={index} fetchMessages={this.fetchMessages} />
+              <ChatMessage message={message} key={index} authToggle={authToggle} fetchMessages={this.fetchMessages} />
             )
           })}
         </ul>

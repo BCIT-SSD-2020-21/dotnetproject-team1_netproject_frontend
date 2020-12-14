@@ -16,6 +16,12 @@ export class ChatMessage extends Component {
     this.checkAuthentication();
   }
 
+  componentDidUpdate(prevProps){
+    if(prevProps.authToggle !== this.props.authToggle){
+      this.checkAuthentication();
+    }
+  }
+
   deleteMessage = (id) => {
     fetch(`${BASE_URL}Chat/mydelete?Id=${id}`, {
       method: "DELETE",
