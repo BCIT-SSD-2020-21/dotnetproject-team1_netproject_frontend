@@ -34,6 +34,7 @@ class Register extends Component {
     // Store token with session data.
     if(json["status"]=="OK") {
         sessionStorage.setItem('bearer-token', json["token"]);
+        sessionStorage.setItem('authUserName', json["username"])
         console.log(sessionStorage.getItem('bearer-token'))
     }
     else {
