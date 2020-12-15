@@ -15,7 +15,7 @@ class Register extends Component {
     //Prevent page reload
     event.preventDefault();
     
-    fetch('https://localhost:44363/Auth/Register', {
+    fetch('https://parlezprod.azurewebsites.net/Auth/Register', {
     method: 'POST',
     headers: {
         'Accept': 'application/json',

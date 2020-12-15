@@ -1,7 +1,7 @@
 
 import React, { Component, Fragment } from 'react'
 import { CautionIcon } from '../Icons'
-const BASE_URL = 'https://localhost:44363/api/';
+const BASE_URL = 'https://parlezprod.azurewebsites.net/api/';
 
 export class SubmitMessage extends Component {
   constructor(props) {

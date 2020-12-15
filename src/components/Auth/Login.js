@@ -14,7 +14,7 @@ class Login extends Component {
     event.preventDefault();
 
     //Integrate Auth here on valid form submission
-fetch('https://localhost:44363/Auth/Login', {
+fetch('https://parlezprod.azurewebsites.net/Auth/Login', {
   method: 'POST',
   headers: {
       'Accept': 'application/json',
