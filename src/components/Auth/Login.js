@@ -1,6 +1,6 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import { Link } from 'react-router-dom';
-import { MailIcon, LockIcon } from '../Icons'
+import { MailIcon, LockIcon, CautionIcon } from '../Icons'
 import { withRouter } from 'react-router-dom';
 
 class Login extends Component {
@@ -93,6 +93,7 @@ fetch('https://localhost:44363/Auth/Login', {
   };
 
   render() {
+    const {  error } = this.state;
 
 
     const errorMessage = (
@@ -151,6 +152,7 @@ fetch('https://localhost:44363/Auth/Login', {
                 <p>Don't have an account? <Link to="/register">Sign up</Link></p>
             </div>
         </div>
+        { error.active ? errorMessage : ''}
       </section>
     )
   }

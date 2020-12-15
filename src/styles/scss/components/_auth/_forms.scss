@@ -7,6 +7,8 @@ section.Login{
   min-height: calc(500px + 84px);
   margin: auto;
   justify-content: space-around;
+
+
 }
 
 .form__container{
@@ -138,4 +140,25 @@ button.exit{
   @include body-regular;
   padding-top: 20px;
 
+}
+
+.em__container{
+  margin-top: -150px;
+  background: $light-ruby;
+  padding: 14px;
+
+
+  .em__wrap {
+    display: flex;
+  }
+
+  svg {
+    fill: white;
+  }
+
+  p {
+    color: white;
+    text-align: left;
+    margin-left: 14px;
+  }
 }
