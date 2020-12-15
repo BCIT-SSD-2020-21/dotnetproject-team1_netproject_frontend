@@ -32,7 +32,7 @@ class Register extends Component {
 // Data retrieved.
 .then(json => {
     // Store token with session data.
-    if(json["status"]=="OK") {
+    if(json["status"]==="OK") {
         sessionStorage.setItem('bearer-token', json["token"]);
         sessionStorage.setItem('authUserName', json["username"])
         this.props.history.push("/")
