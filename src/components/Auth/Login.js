@@ -75,7 +75,14 @@ fetch('https://localhost:44363/Auth/Login', {
 
 
 
-
+  resetErrors = () => {
+    setTimeout(() => {
+      this.setState({ error: {
+        message: '',
+        active: false
+      }}) 
+    }, 4000)
+  }
 
 
 
