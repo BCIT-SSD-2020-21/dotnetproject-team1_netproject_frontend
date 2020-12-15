@@ -6,7 +6,11 @@ import { withRouter } from 'react-router-dom';
 class Login extends Component {
   state = {
     email: "",
-    password: ""
+    password: "",
+    error: {
+      message: '',
+      active: false,
+    }
   };
 
   handleSubmit = async event => {
@@ -48,6 +52,33 @@ fetch('https://localhost:44363/Auth/Login', {
     
   };
 
+
+
+
+
+  validateLogin = (e) => {
+    e.preventDefault();
+    const { email, password } = this.state;
+    if(!email && !password){
+      this.setState({error: {message: 'You entered invalid information. Please log in again.', active: true,} })
+      return null
+    }else if(!email){
+      this.setState({error: {message: 'Your email is not confirmed. Please enter again.', active: true,} })
+      return null
+    }else if(!password){
+      this.setState({error: {message: 'Your password is wrong. Please enter again', active: true,} })
+      return null
+    }else{
+      this.handleSubmit(e)
+    }
+  }
+
+
+
+
+
+
+
   onInputChange = event => {
     this.setState({
       [event.target.id]: event.target.value
@@ -62,7 +93,7 @@ fetch('https://localhost:44363/Auth/Login', {
               <div className="modal-head">
                     <h3 className="modal-title">Login</h3>
               </div>
-          <form onSubmit={this.handleSubmit}>
+          <form onSubmit= {(e) => this.validateLogin(e)}>
             <div className="fieldset">
                 <MailIcon />
                 <input 
