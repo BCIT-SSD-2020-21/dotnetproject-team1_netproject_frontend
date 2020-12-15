@@ -42,6 +42,7 @@ fetch('https://localhost:44363/Auth/Login', {
   }
   else {
       // error message handling
+      this.setState({error: {message: 'The validation is failed. Please check again your email and password.', active: true,} })
       console.log('Error in Auth/Login');
   }
 })
@@ -60,13 +61,13 @@ fetch('https://localhost:44363/Auth/Login', {
     e.preventDefault();
     const { email, password } = this.state;
     if(!email && !password){
-      this.setState({error: {message: 'You entered invalid information. Please log in again.', active: true,} })
+      this.setState({error: {message: 'You have to enter both your email and password.', active: true,} })
       return null
     }else if(!email){
-      this.setState({error: {message: 'Your email is not confirmed. Please enter again.', active: true,} })
+      this.setState({error: {message: 'Please enter your email.', active: true,} })
       return null
     }else if(!password){
-      this.setState({error: {message: 'Your password is wrong. Please enter again', active: true,} })
+      this.setState({error: {message: 'Please enter your password.', active: true,} })
       return null
     }else{
       this.handleSubmit(e)
