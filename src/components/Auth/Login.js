@@ -93,6 +93,23 @@ fetch('https://localhost:44363/Auth/Login', {
   };
 
   render() {
+
+
+    const errorMessage = (
+      <Fragment>
+        <div className='em__container'>
+          <div className="em__wrap">
+            <div className="svg-cont">
+              <CautionIcon />
+            </div>
+            <p>{ error.message }</p>
+          </div>
+        </div>
+      </Fragment>
+    )
+
+
+
     return (
       <section className="Login">
          <div className="form__container">
