@@ -42,6 +42,7 @@ fetch('https://localhost:44363/Auth/Login', {
   }
   else {
       // error message handling
+
       this.setState({error: {message: 'The validation is failed. Please check again your email and password.', active: true,} })
       console.log('Error in Auth/Login');
   }
@@ -60,6 +61,18 @@ fetch('https://localhost:44363/Auth/Login', {
   validateLogin = (e) => {
     e.preventDefault();
     const { email, password } = this.state;
+
+   const isEmail = email => {
+      const emailRegex = /^(([^<>()\[\].,;:\s@"]+(\.[^<>()\[\].,;:\s@"]+)*)|(".+"))@(([^<>()[\].,;:\s@"]+\.)+[^<>()[\].,;:\s@"]{2,})$/i;
+      return emailRegex.test(email);
+    };
+
+   const isPassword = password => {
+      const passwordRegex = /^(?=.*\d)(?=.*[a-zA-Z])[0-9a-zA-Z]{8,10}$/;
+      return passwordRegex.test(password); 
+    }
+
+
     if(!email && !password){
       this.setState({error: {message: 'You have to enter both your email and password.', active: true,} })
       return null
@@ -69,7 +82,13 @@ fetch('https://localhost:44363/Auth/Login', {
     }else if(!password){
       this.setState({error: {message: 'Please enter your password.', active: true,} })
       return null
-    }else{
+    }else if(!isEmail(this.state.email)){
+      this.setState({error: {message: 'Your Email is not valid. Please check your Email again.', active: true,} })
+    }else if(!isPassword(this.state.password)){
+      this.setState({error: {message: 'Your Password is not valid. Please check your Password again.', active: true,} })
+    }
+    
+    else{
       this.handleSubmit(e)
     }
   }
