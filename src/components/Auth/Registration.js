@@ -48,19 +48,48 @@ class Register extends Component {
             errors.push(errorMessage);
         }
 
-        let passPattern = new RegExp(
-            /^(?=.*[A-Z].*[A-Z])(?=.*[!@#$&*])(?=.*[0-9].*[0-9])(?=.*[a-z].*[a-z].*[a-z]).{8}$/
-        );
+        let upperCase = new RegExp(/^(?=.*[A-Z])/);
 
-        if (!passPattern.test(password)) {
+        //checks for uppercase
+        if (!upperCase.test(password)) {
             this.setState({ isValid: false });
             let errors = this.state.errors;
             let passMessage =
-                "Please ensure the password has at least Upper case, a lower case, a number, and a Min 7 characters.";
+                "Please ensure the password includes 1 uppercase letter";
+            errors.push(passMessage);
+        }
+        let lowerCase = new RegExp(/^(?=.*[a-z])/);
+
+        //checks for lowercase
+        if (!lowerCase.test(password)) {
+            this.setState({ isValid: false });
+            let errors = this.state.errors;
+            let passMessage =
+                "Please ensure the password includes 1 lowercase letter";
+            errors.push(passMessage);
+        }
+
+        let digits = new RegExp(/^(?=.*[0-9])/);
+        //checks for a number
+        if (!digits.test(password)) {
+            this.setState({ isValid: false });
+            let errors = this.state.errors;
+            let passMessage = "Please ensure the password includes a number";
+            errors.push(passMessage);
+        }
+
+        let special = new RegExp(/^(?=.*[!@#$&*])/);
+
+        //checks for a special character
+        if (!special.test(password)) {
+            this.setState({ isValid: false });
+            let errors = this.state.errors;
+            let passMessage =
+                "Please ensure the password includes a special !, @, #, $, or &* character";
             errors.push(passMessage);
         }
     }
-
+    //   /^(?=.*[A-Z].*[A-Z])(?=.*[!@#$&*])(?=.*[0-9].*[0-9])(?=.*[a-z].*[a-z].*[a-z]).{8}$/
     // validate() {
     //     let input = this.state.input;
     //     let errors = {};
