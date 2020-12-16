@@ -35,7 +35,7 @@ fetch('https://localhost:44363/Auth/Login', {
 .then(json => {
   console.log(JSON.stringify(json));
   // Store token with session data.
-  if(json["status"]=="OK") {
+  if(json["status"]==="OK") {
       sessionStorage.setItem('bearer-token', json["token"]);
       sessionStorage.setItem('authUserName', json["username"])
       this.props.history.push("/")
