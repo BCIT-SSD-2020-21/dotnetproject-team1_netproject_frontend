@@ -1,23 +1,23 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import './styles/index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
-import { BrowserRouter as Router } from 'react-router-dom';
-import { createBrowserHistory } from 'history';
-import ScrollToTop from './components/Global/ScrollTop';
+import React from "react";
+import ReactDOM from "react-dom";
+import "./styles/index.css";
+import App from "./App";
+import reportWebVitals from "./reportWebVitals";
+import { BrowserRouter as Router } from "react-router-dom";
+import { createBrowserHistory } from "history";
+import ScrollToTop from "./components/Global/ScrollTop";
 
 const history = createBrowserHistory();
 
 ReactDOM.render(
-  <Router history={history}>
-    <React.StrictMode>
-      <ScrollToTop >
-        <App />
-      </ScrollToTop>
-    </React.StrictMode>
-  </Router>,
-  document.getElementById('root')
+    <Router history={history}>
+        <React.StrictMode>
+            <ScrollToTop>
+                <App />
+            </ScrollToTop>
+        </React.StrictMode>
+    </Router>,
+    document.getElementById("root")
 );
 
 // If you want to start measuring performance in your app, pass a function

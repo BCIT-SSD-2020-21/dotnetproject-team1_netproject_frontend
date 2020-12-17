@@ -253,7 +253,16 @@ class Register extends Component {
                             {isValid
                                 ? null
                                 : errors.map((err) => {
-                                      return <div>{err}</div>;
+                                      return (
+                                          <div className="em__container">
+                                              <div className="em__wrap">
+                                                  <div className="svg-cont">
+                                                      <CautionIcon />
+                                                  </div>
+                                                  <p>{err}</p>
+                                              </div>
+                                          </div>
+                                      );
                                   })}
                         </div>
                     </div>

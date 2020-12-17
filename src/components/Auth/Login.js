@@ -7,6 +7,10 @@ class Login extends Component {
     state = {
         email: "",
         password: "",
+        error: {
+            message: "",
+            active: false,
+        },
     };
 
     handleSubmit = async (event) => {
@@ -29,7 +33,6 @@ class Login extends Component {
             .then((response) => response.json())
             // Data retrieved.
             .then((json) => {
-                console.log(JSON.stringify(json));
                 // Store token with session data.
                 if (json["status"] === "OK") {
                     sessionStorage.setItem("bearer-token", json["token"]);
@@ -45,7 +48,6 @@ class Login extends Component {
                             active: true,
                         },
                     });
-                    console.log("Error in Auth/Login");
                 }
             })
             // Data not retrieved.
@@ -61,11 +63,6 @@ class Login extends Component {
         let isEmail = new RegExp(
             /^(("[\w-\s]+")|([\w-]+(?:\.[\w-]+)*)|("[\w-\s]+")([\w-]+(?:\.[\w-]+)*))(@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$)|(@\[?((25[0-5]\.|2[0-4][0-9]\.|1[0-9]{2}\.|[0-9]{1,2}\.))((25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\.){2}(25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\]?$)/i
         );
-        let passLength = new RegExp(/^(?=.*[A-Za-z\d$@$!%*?&]{7})/);
-        let upperCase = new RegExp(/^(?=.*[A-Z])/);
-        let lowerCase = new RegExp(/^(?=.*[a-z])/);
-        let digits = new RegExp(/^(?=.*[0-9])/);
-        let special = new RegExp(/^(?=.*[!@#$&*])/);
 
         if (!email && !password) {
             this.setState({
@@ -192,6 +189,14 @@ class Login extends Component {
                                 <button className="submit">Login</button>
                             </div>
                         </form>
+                        <div className="error-container">
+                            <div className="active1">
+                                {error.active ? errorMessage : ""}
+                            </div>
+                            <div className="active2">
+                                {error.active2 ? errorMessage2 : ""}
+                            </div>
+                        </div>
                     </div>
                     <div className="modal-footer">
                         <p>
@@ -199,13 +204,6 @@ class Login extends Component {
                             <Link to="/register">Sign up</Link>
                         </p>
                     </div>
-                </div>
-
-                <div className="active1">
-                    {error.active ? errorMessage : ""}
-                </div>
-                <div className="active2">
-                    {error.active2 ? errorMessage2 : ""}
                 </div>
             </section>
         );
