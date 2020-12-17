@@ -172,25 +172,22 @@ class Login extends Component {
               </div>
 
               <div className="fieldset submit">
-
                 <button className="submit">Login</button>
               </div>
             </form>
-            
+            <div className="error-container">
+              <div className="active1">
+              { error.active ? errorMessage : ''}
+              </div>
+              <div className="active2">
+              { error.active2 ? errorMessage2 : ''}
+              </div>
+            </div>
           </div>
           <div className="modal-footer">
             <p>Don't have an account? <Link to="/register">Sign up</Link></p>
           </div>
-        </div>
-        
-        <div className="active1">
-        { error.active ? errorMessage : ''}
-        </div>
-        <div className="active2">
-        { error.active2 ? errorMessage2 : ''}
-        </div>
-       
-       
+        </div> 
        
       </section>
     )
