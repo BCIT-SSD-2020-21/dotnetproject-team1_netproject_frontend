@@ -68,7 +68,7 @@ export class ChatMessage extends Component {
 
   render() {
     const { createdOn, messageText, userName, id } = this.props.message
-    const { isAuthenticated, message } = this.state
+    const { isAuthenticated } = this.state
     const deleteButton = (
       <Fragment>
         •&nbsp;
