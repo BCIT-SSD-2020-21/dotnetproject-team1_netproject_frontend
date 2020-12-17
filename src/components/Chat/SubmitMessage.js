@@ -160,7 +160,7 @@ export class SubmitMessage extends Component {
                 <p>Message:</p>
               </label>
               <div className="fieldset">
-                <textarea rows="2" type="text" placeholder="Aa" id="messageText" value={this.state.message} onChange={(e) => this.onInputChange(e)}/>
+                <textarea rows="2" type="text" placeholder="Aa" id="messageText" value={this.state.messageText} onChange={(e) => this.onInputChange(e)}/>
               </div>
               <div className="fieldset submit">
                 <button>Send</button>
