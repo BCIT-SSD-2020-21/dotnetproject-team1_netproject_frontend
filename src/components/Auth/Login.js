@@ -69,8 +69,7 @@ class Login extends Component {
     let special = new RegExp(/^(?=.*[!@#$&*])/);
 
     if (!email && !password) {
-      this.setState({ error: { message: 'You have to enter both your email and password.', active: true, } })
-      return null
+      this.setState({ error: { message: 'Please enter your email.', active: true, message2: 'Please enter your password.', active2: true,} })
     } else if (!email) {
       this.setState({ error: { message: 'Please enter your email.', active: true, } })
       return null
@@ -79,52 +78,18 @@ class Login extends Component {
       return null
     }
 
-
-    else if (!isEmail.test(email) && !passLength.test(password)) 
+    else if (!isEmail.test(email) && !password) 
     {
-      this.setState({ error: { message: 'Your Email is not valid. Please check your Email again.', active: true, message2: 'Password must be at least 7 characters', active2: true,} })
-    }  else if (!isEmail.test(email) && !upperCase.test(password)) 
-    {
-      this.setState({ error: { message: 'Your Email is not valid. Please check your Email again.', active: true, message2: 'Password needs to include an uppercase letter', active2: true,} })
-    }  else if (!isEmail.test(email) && !lowerCase.test(password)) 
-    {
-      this.setState({ error: { message: 'Your Email is not valid. Please check your Email again.', active: true, message2: 'Password needs to include a lowercase letter', active2: true,} })
-    }  else if (!isEmail.test(email) && !digits.test(password)) 
-    {
-      this.setState({ error: { message: 'Your Email is not valid. Please check your Email again.', active: true, message2: 'Password needs to include a number', active2: true,} })
-    }  else if (!isEmail.test(email) && !special.test(password)) 
-    {
-      this.setState({ error: { message: 'Your Email is not valid. Please check your Email again.', active: true, message2: 'Password needs a special character !, @, #, $, or &', active2: true,} })
+      this.setState({ error: { message: 'Your Email is not valid. Please check your Email again.', active: true, message2: 'Please enter your password.', active2: true,} })
     } 
-
-
     else if (!isEmail.test(email)) {
       this.setState({ error: { message: 'Your Email is not valid. Please check your Email again.', active: true, } })
     } 
-    else if (!passLength.test(password)) 
-    {
-      this.setState({ error: { message2: 'Password must be at least 7 characters', active2: true, } })
-    } else if (!upperCase.test(password)) 
-    {
-      this.setState({ error: { message2: 'Password needs to include an uppercase letter', active2: true, } })
-    } else if (!lowerCase.test(password)) 
-    {
-      this.setState({ error: { message2: 'Password needs to include a lowercase letter', active2: true, } })
-    } else if (!digits.test(password))
-     {
-      this.setState({ error: { message2: 'Password needs to include a number', active2: true, } })
-    } else if (!special.test(password)) 
-    {
-      this.setState({ error: { message2: 'Password needs a special character !, @, #, $, or &', active2: true, } })
-    }  
+    
     else {
       this.handleSubmit(e)
     }
   }
-
-
-
-
 
 
   resetErrors = () => {
@@ -223,10 +188,10 @@ class Login extends Component {
           </div>
         </div>
         
-        <div className="acitve1">
+        <div className="active1">
         { error.active ? errorMessage : ''}
         </div>
-        <div className="acitve2">
+        <div className="active2">
         { error.active2 ? errorMessage2 : ''}
         </div>
        
