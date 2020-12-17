@@ -1,17 +1,22 @@
 import React, { Component } from 'react'
 import ChatMessage from './ChatMessage'
 import ChatBlocker from './ChatBlocker'
+import Preloader from '../Global/Preloader'
+import { CautionIcon } from '../Icons'
 
-
-
-const BASE_URL = "https://localhost:44363/api/";
+const BASE_URL = "https://parlezprod.azurewebsites.net/api/";
 
 export class Chatlist extends Component {
   constructor(props) {
     super(props)
     this.state = {
       isAuthenticated: true, 
-      messages: []
+      messages: [],
+      isLoading: false,
+      message : {
+        text: '',
+        active: false
+      }
     }
   }
 
@@ -20,13 +25,31 @@ export class Chatlist extends Component {
     this.scrollToBottom()
 
   }
-  componentDidUpdate = (prevProps) => {
+  componentDidUpdate = (prevProps, prevState) => {
     if (prevProps.rerender !== this.props.rerender) {
       this.fetchMessages();
     }
+    if (prevState.message.active !== this.state.message.active){
+      this.resetErrors();
+    }
+  }
+
+  messageDelete = (childData) => {
+    console.log(childData)
+    this.setState({ message: {text: childData.text, active: childData.active}})
+  }
+
+  resetErrors = () => {
+    setTimeout(() => {
+      this.setState({ message: {
+        text: '',
+        active: false
+      }}) 
+    }, 2000)
   }
 
   fetchMessages = () => {
+    this.setState({isLoading: true})
     fetch(`${BASE_URL}Chat`, {
       method: 'GET',
       headers: {
@@ -41,7 +64,8 @@ export class Chatlist extends Component {
             createdOn: this.parseDate(d.createdOn)
           }
         })
-        this.setState({ messages: mappedData }, () => {this.scrollToBottom()})
+        this.setState({ messages: mappedData }, () => { this.scrollToBottom() })
+        this.setState({ isLoading: false })
       })
       .catch((err) => { });
   };
@@ -66,14 +90,14 @@ export class Chatlist extends Component {
 
   scrollToBottom = () => {
     const ChatList = document.querySelector('.ChatList')
-    const Chat = document.querySelector('.Chat')
+    const Chat = document.querySelector('ul.Chat')
     setTimeout(() => {
       ChatList.scrollTop = Chat.scrollHeight;
     }, 500)
   }
 
   render() {
-    const { isAuthenticated } = this.state;
+    const { isAuthenticated, isLoading, message } = this.state;
     const { authToggle } = this.props;
     const activeChat = {
       overflowY: 'auto'
@@ -83,11 +107,24 @@ export class Chatlist extends Component {
     }
     return (
       <div className="ChatList" style={isAuthenticated ? activeChat : inactiveChat}>
+        { message.active === true ? 
+          <div className="info-text">
+            <div className="info__container">
+              <div className="svg-cont">
+                <CautionIcon />
+              </div>
+              <p> {message.text} </p>
+            </div>
+          </div>
+        :
+          null
+        }
         { isAuthenticated ? '' : <ChatBlocker />}
+        { isLoading ? <Preloader /> : null }
         <ul className="Chat">
           {this.state.messages.map((message, index) => {
             return (
-              <ChatMessage message={message} key={index} authToggle={authToggle} fetchMessages={this.fetchMessages} />
+              <ChatMessage message={message} key={index} authToggle={authToggle} fetchMessages={this.fetchMessages} deleteMessage={this.messageDelete} />
             )
           })}
         </ul>

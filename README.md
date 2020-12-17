@@ -1,70 +1,86 @@
-# Getting Started with Create React App
+###### .NET PROJECT
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+<div align="center">
 
-## Available Scripts
+# PARLEZ :speech_balloon:
 
-In the project directory, you can run:
+###### Mandeep Dhillon, Patrick Fortaleza, Juhwan Moon, AJ Purugganan, Kalvin Tang
 
-### `npm start`
+</div>
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+</br>
+<strong> Live Application: </strong> <a target="blank_" href="https://parlezprod.netlify.app/">Parlez.netlify.app</a> <br/>
+<br/>
+<strong>App type:</strong> Chat Application<br/>
+<strong>Description:</strong> A simple chat/forum application where users are able to create accounts, post messages to a chatroom, read and delete existing messages.
+<br/>
+</br>
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+<details>
+<summary> :key: &nbsp; INSTALLATION INSTRUCTIONS HERE! </summary>
+<br/>
+<b>.NET API</b> <br/>
+<ol>
+    <li>Clone the <a href="https://github.com/BCIT-SSD-2020-21/dotnetproject-team1_netproject">.NET API Repo</a> to your Local machine</li>
+    <li>Copy and paste `appsettingsTEMPLATE.json` file and rename the copy to `appsettings.json`</li>
+    <li>Update your Connection string to direct it to your local database</li>
+    <li>Run `Add-Migrations InitialChatSchema -Context ChatDbContext -OutputDir "Data/Migrations"`</li>
+    <li>Then run `Update-Database -Context ChatDbContext`</li>
+</ol>
+<b>React Client</b>
+<ol>
+    <li>Clone the <a href="https://github.com/BCIT-SSD-2020-21/dotnetproject-team1_netproject_frontend">React App Repo</a> to your Local machine</li>
+    <li>CD into the cloned respository in your local.</li>
+    <li>Run `npm install` to install necessary packages</li>
+    <li>Run `npm start` to boot up the application</li>
+    <li>OPTIONAL: Update the end-points to use your locally running .NET api in `Login.js`, `Registration.js`, `Chatlist.js`, `ChatMessage.js`, and `SubmitMessage.js`</li>
+</ol>
+</details>
 
-### `npm test`
+</br>
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## :bookmark_tabs: &nbsp; FEATURE LIST
 
-### `npm run build`
+### Core Application Features
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+1. User authentication
+2. Users can post messages
+3. User can delete their own messages
+4. Users can see the timestamp of each message
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### Nice-To-Have Features
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+1. User can reply to messages
+2. Administrators can pin messages
+3. Advanced formatting in messages
+4. Multiple chatrooms
+5. Emoji's / symbols in messages
 
-### `npm run eject`
+### Functional Requirements
+1. The user interface will allow anonymous chat messages.
+2. Users can only delete messages created by their account.
+3. The system will require a database that stores messages, and user data.
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+### Non-functional Requirements
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+1. The chat application will allow a message object to have a nullable UserId, allowing anon users.
+2. Anonymous users must enter in an alias to post a message if they are not authenticated.
+3. Each message object will need a user id field.
+4. An API will be used to communicate data from the server to the front-end.
+5. The application will use ReactJS to send POST/GET/UPDATE/DELETE Requests
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+## :file_folder: &nbsp; SUPPORTING DOCUMENTS
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+### Use Case Diagram
 
-## Learn More
+<img style="border: solid 1px #ccc" src="https://pfteza-parlez.s3-us-west-2.amazonaws.com/parlez-userdiagram.png" alt="use case diagram for a messenger application" width="100%" />
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+### Low-Fidelity Prototype:
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+<img src="https://pfteza-parlez.s3-us-west-2.amazonaws.com/parlez-mockup.png" alt="Low Fidelity for chat application" width="100%" />
 
-### Code Splitting
+### ER Diagram
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+<img style="border: solid 1px #ccc" src="https://pfteza-parlez.s3-us-west-2.amazonaws.com/parlez-erd.png" alt="ER diagram for chat application" width="100%" />
 
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+</br>

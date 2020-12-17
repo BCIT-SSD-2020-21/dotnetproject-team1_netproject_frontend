@@ -2,13 +2,14 @@ import React, { Component, Fragment } from 'react'
 import { UpTriangle, DownTriangle } from '../Icons'
 
 
-const BASE_URL = "https://localhost:44363/api/";
+const BASE_URL = "https://parlezprod.azurewebsites.net/api/";
 
 export class ChatMessage extends Component {
   constructor(props) {
     super(props)
     this.state = {
       isAuthenticated: false,
+      userId: '',
     }
   }
 
@@ -31,13 +32,24 @@ export class ChatMessage extends Component {
     })
       .then((res) => res.json())
       .then((json) => {
+        const message = {
+          text: 'Message successfully deleted',
+          active: true
+        }
+        this.props.deleteMessage(message);
         this.props.fetchMessages()
       })
-      .catch((err) => { })
+      .catch((err) => { 
+        const message = {
+          text: 'Unable to delete message',
+          active: true
+        }
+        this.props.deleteMessage(message);
+      })
   };
 
   handleLogout = () => {
-    this.setState({ isAuthenticated: false, userName: '', messageText: '' }, () => {
+    this.setState({ isAuthenticated: false, userName: '', messageText: '', userId: '' }, () => {
       sessionStorage.clear()
     })
   }
@@ -45,8 +57,9 @@ export class ChatMessage extends Component {
   checkAuthentication(){
     const userToken = sessionStorage.getItem('bearer-token')
     const userName = sessionStorage.getItem('authUserName')
+    const userId = sessionStorage.getItem('userId')
     if( userToken && userName){
-      this.setState({isAuthenticated: true, userName: userName})
+      this.setState({isAuthenticated: true, userName: userName, userId: userId})
     }else{
       this.handleLogout()
     }
@@ -61,7 +74,6 @@ export class ChatMessage extends Component {
         •&nbsp;
         <button
         onClick={() => { this.deleteMessage(id) }}
-        style={{ color: "#E52646" }}
         >
           Delete
         </button>
@@ -89,7 +101,7 @@ export class ChatMessage extends Component {
             </div>
             <div className="messageMeta">
               {createdOn} &nbsp;
-              { isAuthenticated ? deleteButton : null}
+              { isAuthenticated && this.props.message.userId === this.state.userId ? deleteButton : null}
             </div>
           </div>
         </div>

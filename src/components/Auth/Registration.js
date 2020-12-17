@@ -146,13 +146,17 @@ class Register extends Component {
                 errors.push(errorMessage);
             }
         }
+
+        if (this.state.isValid === true) {
+            this.handleSubmit(event);
+        }
     }
 
     handleSubmit = async (event) => {
         //Prevent page reload
         event.preventDefault();
 
-        fetch("https://localhost:44363/Auth/Register", {
+        fetch("https://parlezprod.azurewebsites.net/Auth/Register", {
             method: "POST",
             headers: {
                 Accept: "application/json",
@@ -172,15 +176,29 @@ class Register extends Component {
                 if (json["status"] == "OK") {
                     sessionStorage.setItem("bearer-token", json["token"]);
                     sessionStorage.setItem("authUserName", json["username"]);
+                    sessionStorage.setItem("userId", json["userid"]);
                     this.props.history.push("/");
                 } else {
                     // error message handling
-                    console.log("Error in Auth/Register");
+                    let errorMessage = json.title;
+                    let errors = this.state.errors;
+
+                    if (errors.includes(errorMessage)) {
+                        console.log("reached error message here");
+                        return;
+                    } else {
+                        console.log("pushed error message");
+                        errors.push(errorMessage);
+                    }
+                    this.setState({ isValid: false });
+
+                    console.log(json.title);
                 }
             })
             // Data not retrieved.
             .catch(function (error) {
                 console.log(error);
+                console.log("catchMethod");
             });
     };
 
@@ -192,6 +210,7 @@ class Register extends Component {
 
     render() {
         const { isValid, errors } = this.state;
+        console.log(isValid);
         return (
             <section className="Login">
                 <div className="form__container">
