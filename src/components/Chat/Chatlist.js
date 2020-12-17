@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import ChatMessage from './ChatMessage'
 import ChatBlocker from './ChatBlocker'
+import Preloader from '../Global/Preloader'
 
 
 
@@ -11,7 +12,8 @@ export class Chatlist extends Component {
     super(props)
     this.state = {
       isAuthenticated: true, 
-      messages: []
+      messages: [],
+      isLoading: false,
     }
   }
 
@@ -27,6 +29,7 @@ export class Chatlist extends Component {
   }
 
   fetchMessages = () => {
+    this.setState({isLoading: true})
     fetch(`${BASE_URL}Chat`, {
       method: 'GET',
       headers: {
@@ -41,7 +44,8 @@ export class Chatlist extends Component {
             createdOn: this.parseDate(d.createdOn)
           }
         })
-        this.setState({ messages: mappedData }, () => {this.scrollToBottom()})
+        this.setState({ messages: mappedData }, () => { this.scrollToBottom() })
+        this.setState({ isLoading: false })
       })
       .catch((err) => { });
   };
@@ -73,7 +77,7 @@ export class Chatlist extends Component {
   }
 
   render() {
-    const { isAuthenticated } = this.state;
+    const { isAuthenticated, isLoading } = this.state;
     const { authToggle } = this.props;
     const activeChat = {
       overflowY: 'auto'
@@ -84,6 +88,7 @@ export class Chatlist extends Component {
     return (
       <div className="ChatList" style={isAuthenticated ? activeChat : inactiveChat}>
         { isAuthenticated ? '' : <ChatBlocker />}
+        { isLoading ? <Preloader /> : null }
         <ul className="Chat">
           {this.state.messages.map((message, index) => {
             return (
@@ -91,7 +96,6 @@ export class Chatlist extends Component {
             )
           })}
         </ul>
-        <button>Refresh</button>
       </div>
     )
   }
