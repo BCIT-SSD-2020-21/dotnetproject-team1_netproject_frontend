@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import ChatMessage from './ChatMessage'
 import ChatBlocker from './ChatBlocker'
 import Preloader from '../Global/Preloader'
+import { CautionIcon } from '../Icons'
 
 const BASE_URL = "https://parlezprod.azurewebsites.net/api/";
 
@@ -12,6 +13,10 @@ export class Chatlist extends Component {
       isAuthenticated: true, 
       messages: [],
       isLoading: false,
+      message : {
+        text: '',
+        active: false
+      }
     }
   }
 
@@ -20,10 +25,27 @@ export class Chatlist extends Component {
     this.scrollToBottom()
 
   }
-  componentDidUpdate = (prevProps) => {
+  componentDidUpdate = (prevProps, prevState) => {
     if (prevProps.rerender !== this.props.rerender) {
       this.fetchMessages();
     }
+    if (prevState.message.active !== this.state.message.active){
+      this.resetErrors();
+    }
+  }
+
+  messageDelete = (childData) => {
+    console.log(childData)
+    this.setState({ message: {text: childData.text, active: childData.active}})
+  }
+
+  resetErrors = () => {
+    setTimeout(() => {
+      this.setState({ message: {
+        text: '',
+        active: false
+      }}) 
+    }, 2000)
   }
 
   fetchMessages = () => {
@@ -75,7 +97,7 @@ export class Chatlist extends Component {
   }
 
   render() {
-    const { isAuthenticated, isLoading } = this.state;
+    const { isAuthenticated, isLoading, message } = this.state;
     const { authToggle } = this.props;
     const activeChat = {
       overflowY: 'auto'
@@ -85,12 +107,24 @@ export class Chatlist extends Component {
     }
     return (
       <div className="ChatList" style={isAuthenticated ? activeChat : inactiveChat}>
+        { message.active === true ? 
+          <div className="info-text">
+            <div className="info__container">
+              <div className="svg-cont">
+                <CautionIcon />
+              </div>
+              <p> {message.text} </p>
+            </div>
+          </div>
+        :
+          null
+        }
         { isAuthenticated ? '' : <ChatBlocker />}
         { isLoading ? <Preloader /> : null }
         <ul className="Chat">
           {this.state.messages.map((message, index) => {
             return (
-              <ChatMessage message={message} key={index} authToggle={authToggle} fetchMessages={this.fetchMessages} />
+              <ChatMessage message={message} key={index} authToggle={authToggle} fetchMessages={this.fetchMessages} deleteMessage={this.messageDelete} />
             )
           })}
         </ul>

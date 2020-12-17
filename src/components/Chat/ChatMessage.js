@@ -9,7 +9,7 @@ export class ChatMessage extends Component {
     super(props)
     this.state = {
       isAuthenticated: false,
-      userId: ''
+      userId: '',
     }
   }
 
@@ -32,9 +32,20 @@ export class ChatMessage extends Component {
     })
       .then((res) => res.json())
       .then((json) => {
+        const message = {
+          text: 'Message successfully deleted',
+          active: true
+        }
+        this.props.deleteMessage(message);
         this.props.fetchMessages()
       })
-      .catch((err) => { })
+      .catch((err) => { 
+        const message = {
+          text: 'Unable to delete message',
+          active: true
+        }
+        this.props.deleteMessage(message);
+      })
   };
 
   handleLogout = () => {
@@ -57,13 +68,12 @@ export class ChatMessage extends Component {
 
   render() {
     const { createdOn, messageText, userName, id } = this.props.message
-    const { isAuthenticated } = this.state
+    const { isAuthenticated, message } = this.state
     const deleteButton = (
       <Fragment>
         •&nbsp;
         <button
         onClick={() => { this.deleteMessage(id) }}
-        style={{ color: "#E52646" }}
         >
           Delete
         </button>

@@ -38,4 +38,36 @@
     opacity: 0.25;
     border-radius: 10px;
   }
+
+
+  .info-text {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    z-index: 400;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+
+    .info__container {
+      display: flex;
+      background: $light-ruby;
+      max-width: 400px;
+      margin: auto;
+      padding: 7px 14px;
+      border-radius: 2px;
+
+      p {
+        color: white;
+        margin-left: 7px;
+      }
+
+      svg {
+        fill: white;
+      }
+    }
+  }
+
 }
