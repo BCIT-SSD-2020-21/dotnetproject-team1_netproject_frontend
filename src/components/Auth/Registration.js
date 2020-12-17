@@ -59,8 +59,7 @@ class Register extends Component {
         if (!upperCase.test(password)) {
             this.setState({ isValid: false });
             let errors = this.state.errors;
-            let errorMessage =
-                "Please ensure the password includes 1 uppercase letter";
+            let errorMessage = "Password needs to include an uppercase letter";
             errors.push(errorMessage);
         }
 
@@ -70,8 +69,7 @@ class Register extends Component {
         if (!lowerCase.test(password)) {
             this.setState({ isValid: false });
             let errors = this.state.errors;
-            let errorMessage =
-                "Please ensure the password includes 1 lowercase letter";
+            let errorMessage = "Password needs to include a lowercase letter ";
             errors.push(errorMessage);
         }
 
@@ -80,7 +78,7 @@ class Register extends Component {
         if (!digits.test(password)) {
             this.setState({ isValid: false });
             let errors = this.state.errors;
-            let errorMessage = "Please ensure the password includes a number";
+            let errorMessage = "Password needs to include a number";
             errors.push(errorMessage);
         }
 
@@ -91,7 +89,7 @@ class Register extends Component {
             this.setState({ isValid: false });
             let errors = this.state.errors;
             let errorMessage =
-                "Please ensure the password includes a special !, @, #, $, or &* character";
+                "Passwords needs a special character !, @, #, $, or &";
             errors.push(errorMessage);
         }
 
@@ -101,7 +99,7 @@ class Register extends Component {
         if (!passLength.test(password)) {
             this.setState({ isValid: false });
             let errors = this.state.errors;
-            let errorMessage = "Password length must be a min of 7";
+            let errorMessage = "Password must be at least 7 characters";
             errors.push(errorMessage);
         }
 
