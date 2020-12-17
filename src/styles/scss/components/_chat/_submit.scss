@@ -2,10 +2,12 @@
 # SUBMIT CHAT MESSAGE
 --------------------------------------------------------------*/
 .SubmitMessage {
-  border-top: 1px solid $dark-grey;
+  border-top: 1px solid $light-black;
   background: $light-black;
   position: relative;
   max-height: 700px;
+  -webkit-box-shadow: 0px 0px 24px 9px rgba(0,0,0,0.25); 
+  box-shadow: 0px 0px 24px 9px rgba(0,0,0,0.25);
 
   .em__container {
     position: absolute;

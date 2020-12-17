@@ -1,6 +1,13 @@
 header {
-  border-bottom: 1px solid $dark-grey;
+  border-bottom: 1px solid $light-black;
   background: $light-black;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 700;
+  -webkit-box-shadow: 0px 0px 24px 9px rgba(0,0,0,0.25); 
+  box-shadow: 0px 0px 24px 9px rgba(0,0,0,0.25);
 
   a {
     color: white;

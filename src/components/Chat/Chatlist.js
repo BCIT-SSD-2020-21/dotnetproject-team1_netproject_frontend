@@ -66,7 +66,7 @@ export class Chatlist extends Component {
 
   scrollToBottom = () => {
     const ChatList = document.querySelector('.ChatList')
-    const Chat = document.querySelector('.Chat')
+    const Chat = document.querySelector('ul.Chat')
     setTimeout(() => {
       ChatList.scrollTop = Chat.scrollHeight;
     }, 500)
