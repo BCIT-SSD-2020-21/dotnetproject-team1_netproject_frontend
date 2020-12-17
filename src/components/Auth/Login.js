@@ -61,22 +61,10 @@ fetch('https://parlezprod.azurewebsites.net/Auth/Login', {
     e.preventDefault();
     const { email, password } = this.state;
 
-    //  const isEmail = email => {
-    //   const emailRegex = /^(("[\w-\s]+")|([\w-]+(?:\.[\w-]+)*)|("[\w-\s]+")([\w-]+(?:\.[\w-]+)*))(@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$)|(@\[?((25[0-5]\.|2[0-4][0-9]\.|1[0-9]{2}\.|[0-9]{1,2}\.))((25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\.){2}(25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\]?$)/i;
-    //   return emailRegex.test(email);
-    // };
-    
+ 
 
     let isEmail = new RegExp( /^(("[\w-\s]+")|([\w-]+(?:\.[\w-]+)*)|("[\w-\s]+")([\w-]+(?:\.[\w-]+)*))(@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$)|(@\[?((25[0-5]\.|2[0-4][0-9]\.|1[0-9]{2}\.|[0-9]{1,2}\.))((25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\.){2}(25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\]?$)/i);
-    //checks for uppercase
-    // if (!isEmail.test(email)) {
-    //     this.setState({ isValid: false });
-    //     let errors = this.state.errors;
-    //     let errorMessage =
-    //         "Please ensure the password includes 1 uppercase letter";
-    //     errors.push(errorMessage);
-    // }
-
+   
 
 
     if(!email && !password){
