@@ -69,7 +69,7 @@ fetch('https://parlezprod.azurewebsites.net/Auth/Login', {
     let lowerCase = new RegExp(/^(?=.*[a-z])/);
     let digits = new RegExp(/^(?=.*[0-9])/);
     let special = new RegExp(/^(?=.*[!@#$&*])/);
-    let passLength = new RegExp(/^(?=.*[A-Za-z\d$@$!%*?&]{7})/);
+    
 
 
     if(!email && !password){
