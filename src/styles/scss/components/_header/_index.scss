@@ -42,9 +42,14 @@ header {
 
     ul li.icon {
       flex-direction: row;
+      display: none;
       justify-content: space-between;
       gap: 10px;
       line-height: 28px;
+
+      @media screen and (min-width: 767px){
+        display: flex;
+      }
 
       svg {
         fill: white;

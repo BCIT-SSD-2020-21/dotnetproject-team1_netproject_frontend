@@ -55,7 +55,8 @@ export class SubmitMessage extends Component {
     })
     .then(res => res.json())
         .then(() => {
-            this.props.didPost();   
+            this.props.didPost();
+            this.setState({messageText: ''})   
         })
         .catch(function (error) {
             console.log(error);
