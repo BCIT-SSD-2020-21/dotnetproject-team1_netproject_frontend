@@ -49,7 +49,7 @@ export class SubmitMessage extends Component {
         body: JSON.stringify({
             userName: this.state.userName,
             messageText: this.state.messageText,
-            createdOn: new Date(),
+            createdOn: new Date().toLocaleString('en-US'),
             userId: this.state.userId
         })
     })
