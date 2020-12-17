@@ -77,28 +77,53 @@ class Login extends Component {
     } else if (!password) {
       this.setState({ error: { message: 'Please enter your password.', active: true, } })
       return null
-    } else if (!isEmail.test(email)) {
-      this.setState({ error: { message: 'Your Email is not valid. Please check your Email again.', active: true, } })
-    } else if (!passLength.test(password)) 
+    }
+
+
+    else if (!isEmail.test(email) && !passLength.test(password)) 
     {
-      this.setState({ error: { message: 'Password must be at least 7 characters', active: true, } })
+      this.setState({ error: { message: 'Your Email is not valid. Please check your Email again.', active: true, message2: 'Password must be at least 7 characters', active2: true,} })
+    }  else if (!isEmail.test(email) && !upperCase.test(password)) 
+    {
+      this.setState({ error: { message: 'Your Email is not valid. Please check your Email again.', active: true, message2: 'Password needs to include an uppercase letter', active2: true,} })
+    }  else if (!isEmail.test(email) && !lowerCase.test(password)) 
+    {
+      this.setState({ error: { message: 'Your Email is not valid. Please check your Email again.', active: true, message2: 'Password needs to include a lowercase letter', active2: true,} })
+    }  else if (!isEmail.test(email) && !digits.test(password)) 
+    {
+      this.setState({ error: { message: 'Your Email is not valid. Please check your Email again.', active: true, message2: 'Password needs to include a number', active2: true,} })
+    }  else if (!isEmail.test(email) && !special.test(password)) 
+    {
+      this.setState({ error: { message: 'Your Email is not valid. Please check your Email again.', active: true, message2: 'Password needs a special character !, @, #, $, or &', active2: true,} })
+    } 
+
+
+    else if (!isEmail.test(email)) {
+      this.setState({ error: { message: 'Your Email is not valid. Please check your Email again.', active: true, } })
+    } 
+    else if (!passLength.test(password)) 
+    {
+      this.setState({ error: { message2: 'Password must be at least 7 characters', active2: true, } })
     } else if (!upperCase.test(password)) 
     {
-      this.setState({ error: { message: 'Password needs to include an uppercase letter', active: true, } })
+      this.setState({ error: { message2: 'Password needs to include an uppercase letter', active2: true, } })
     } else if (!lowerCase.test(password)) 
     {
-      this.setState({ error: { message: 'Password needs to include a lowercase letter', active: true, } })
+      this.setState({ error: { message2: 'Password needs to include a lowercase letter', active2: true, } })
     } else if (!digits.test(password))
      {
-      this.setState({ error: { message: 'Password needs to include a number', active: true, } })
+      this.setState({ error: { message2: 'Password needs to include a number', active2: true, } })
     } else if (!special.test(password)) 
     {
-      this.setState({ error: { message: 'Password needs a special character !, @, #, $, or &', active: true, } })
-    }
+      this.setState({ error: { message2: 'Password needs a special character !, @, #, $, or &', active2: true, } })
+    }  
     else {
       this.handleSubmit(e)
     }
   }
+
+
+
 
 
 
@@ -107,7 +132,9 @@ class Login extends Component {
       this.setState({
         error: {
           message: '',
-          active: false
+          active: false,
+          message2: '',
+          active2: false
         }
       })
     }, 4000)
@@ -136,6 +163,21 @@ class Login extends Component {
         </div>
       </Fragment>
     )
+    const errorMessage2 = (
+      <Fragment>
+        <div className='em__container'>
+          <div className="em__wrap">
+            <div className="svg-cont">
+              <CautionIcon />
+            </div>
+            <p>{error.message2}</p>
+          </div>
+        </div>
+      </Fragment>
+    )
+   
+  
+  
 
     return (
       <section className="Login">
@@ -156,7 +198,7 @@ class Login extends Component {
                   onChange={this.onInputChange}
                 />
               </div>
-
+             
               <div className="fieldset">
                 <LockIcon />
                 <input
@@ -174,12 +216,19 @@ class Login extends Component {
                 <button className="submit">Login</button>
               </div>
             </form>
+            
           </div>
           <div className="modal-footer">
             <p>Don't have an account? <Link to="/register">Sign up</Link></p>
           </div>
         </div>
+        
         { error.active ? errorMessage : ''}
+        { error.active2 ? errorMessage2 : ''}
+       
+       
+       
+       
       </section>
     )
   }
