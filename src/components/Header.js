@@ -35,6 +35,7 @@ export class Header extends Component {
     this.setState({ isAuthenticated: false}, () => {
       this.props.toggleAuth();
       sessionStorage.clear()
+      localStorage.clear();
     })
   }
 

@@ -2,8 +2,14 @@
 # CHAT LIST
 --------------------------------------------------------------*/
 
+.Chat{
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
 .ChatList {
-  height: 500px;
+  height: 100%;
   overflow-y: auto;
   padding: 7px 20px;
   position: relative;

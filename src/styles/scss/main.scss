@@ -53,3 +53,15 @@ body {
   max-width: 700px;
   margin: auto;
 }
+
+.main-wrap {
+  height: 75vh;
+  display: flex;
+  flex-direction: column;
+}
+
+main {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}

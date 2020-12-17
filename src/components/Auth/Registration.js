@@ -49,6 +49,7 @@ class Register extends Component {
   };
 
   onInputChange = event => {
+    console.log(event.target.id)
     this.setState({
       [event.target.id]: event.target.value
     });
@@ -72,7 +73,6 @@ class Register extends Component {
                   value={this.state.email}
                   onChange={this.onInputChange}
                 />
-              
             </div>
 
             <div className="fieldset">
