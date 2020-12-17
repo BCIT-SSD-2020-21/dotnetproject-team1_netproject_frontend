@@ -13,8 +13,6 @@ class Register extends Component {
             confirmpassword: "",
             errors: [],
         };
-        this.handleChange = this.handleChange.bind(this);
-        this.handleChange = this.handleChange.bind(this);
     }
 
     handleChange(event) {
@@ -59,7 +57,7 @@ class Register extends Component {
         if (!upperCase.test(password)) {
             this.setState({ isValid: false });
             let errors = this.state.errors;
-            let errorMessage = "Password needs to include an uppercase letter";
+            let errorMessage = "Password needs to include an UPPERCASE letter";
             errors.push(errorMessage);
         }
 
@@ -195,10 +193,6 @@ class Register extends Component {
                                         onChange={this.onInputChange}
                                     />
                                 </div>
-                                <div style={{ fontSize: 16, color: "red" }}>
-                                    {this.state.errors.password}
-                                </div>
-
                                 <div className="fieldset">
                                     <LockIcon />
                                     <input
@@ -209,9 +203,6 @@ class Register extends Component {
                                         value={this.state.confirmpassword}
                                         onChange={this.onInputChange}
                                     />
-                                </div>
-                                <div style={{ fontSize: 16, color: "red" }}>
-                                    {this.state.errors.confirmpassword}
                                 </div>
                                 <div className="fieldset submit">
                                     <button className="submit">Register</button>
