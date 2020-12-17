@@ -1,13 +1,9 @@
-import React, { Component } from 'react'
+import React, { Component } from "react";
 
 export class ViewProfile extends Component {
     render() {
-        return (
-            <div>
-                View Profile
-            </div>
-        )
+        return <div>View Profile</div>;
     }
 }
 
-export default ViewProfile
+export default ViewProfile;
