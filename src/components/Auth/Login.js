@@ -64,6 +64,7 @@ fetch('https://parlezprod.azurewebsites.net/Auth/Login', {
  
 
     let isEmail = new RegExp( /^(("[\w-\s]+")|([\w-]+(?:\.[\w-]+)*)|("[\w-\s]+")([\w-]+(?:\.[\w-]+)*))(@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$)|(@\[?((25[0-5]\.|2[0-4][0-9]\.|1[0-9]{2}\.|[0-9]{1,2}\.))((25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\.){2}(25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\]?$)/i);
+    let passLength = new RegExp(/^(?=.*[A-Za-z\d$@$!%*?&]{7})/);
     let upperCase = new RegExp(/^(?=.*[A-Z])/);
     let lowerCase = new RegExp(/^(?=.*[a-z])/);
     let digits = new RegExp(/^(?=.*[0-9])/);
@@ -82,6 +83,8 @@ fetch('https://parlezprod.azurewebsites.net/Auth/Login', {
       return null
     }else if(!isEmail.test(email)){
       this.setState({error: {message: 'Your Email is not valid. Please check your Email again.', active: true,} })
+    }else if(!passLength.test(password)){
+      this.setState({error: {message: 'Password must be at least 7 characters', active: true,} })
     }else if(!upperCase.test(password)){
       this.setState({error: {message: 'Password needs to include an uppercase letter', active: true,} })
     }else if(!lowerCase.test(password)){
