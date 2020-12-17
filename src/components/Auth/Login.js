@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { MailIcon, LockIcon, CautionIcon } from '../Icons'
 import { withRouter } from 'react-router-dom';
 
+
 class Login extends Component {
   state = {
     email: "",
@@ -16,7 +17,7 @@ class Login extends Component {
   handleSubmit = async event => {
     //Prevent page reload
     event.preventDefault();
-
+    
     //Integrate Auth here on valid form submission
 fetch('https://localhost:44363/Auth/Login', {
   method: 'POST',
@@ -42,9 +43,9 @@ fetch('https://localhost:44363/Auth/Login', {
   }
   else {
       // error message handling
-
       this.setState({error: {message: 'The validation is failed. Please check again your email and password.', active: true,} })
       console.log('Error in Auth/Login');
+     
   }
 })
 // Data not retrieved.
@@ -55,22 +56,26 @@ fetch('https://localhost:44363/Auth/Login', {
   };
 
 
-
-
-
   validateLogin = (e) => {
     e.preventDefault();
     const { email, password } = this.state;
 
-   const isEmail = email => {
-      const emailRegex = /^(([^<>()\[\].,;:\s@"]+(\.[^<>()\[\].,;:\s@"]+)*)|(".+"))@(([^<>()[\].,;:\s@"]+\.)+[^<>()[\].,;:\s@"]{2,})$/i;
-      return emailRegex.test(email);
-    };
+    //  const isEmail = email => {
+    //   const emailRegex = /^(("[\w-\s]+")|([\w-]+(?:\.[\w-]+)*)|("[\w-\s]+")([\w-]+(?:\.[\w-]+)*))(@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$)|(@\[?((25[0-5]\.|2[0-4][0-9]\.|1[0-9]{2}\.|[0-9]{1,2}\.))((25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\.){2}(25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\]?$)/i;
+    //   return emailRegex.test(email);
+    // };
+    
 
-   const isPassword = password => {
-      const passwordRegex = /^(?=.*\d)(?=.*[a-zA-Z])[0-9a-zA-Z]{8,10}$/;
-      return passwordRegex.test(password); 
-    }
+    let isEmail = new RegExp( /^(("[\w-\s]+")|([\w-]+(?:\.[\w-]+)*)|("[\w-\s]+")([\w-]+(?:\.[\w-]+)*))(@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$)|(@\[?((25[0-5]\.|2[0-4][0-9]\.|1[0-9]{2}\.|[0-9]{1,2}\.))((25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\.){2}(25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\]?$)/i);
+    //checks for uppercase
+    // if (!isEmail.test(email)) {
+    //     this.setState({ isValid: false });
+    //     let errors = this.state.errors;
+    //     let errorMessage =
+    //         "Please ensure the password includes 1 uppercase letter";
+    //     errors.push(errorMessage);
+    // }
+
 
 
     if(!email && !password){
@@ -82,10 +87,8 @@ fetch('https://localhost:44363/Auth/Login', {
     }else if(!password){
       this.setState({error: {message: 'Please enter your password.', active: true,} })
       return null
-    }else if(!isEmail(this.state.email)){
+    }else if(!isEmail.test(email)){
       this.setState({error: {message: 'Your Email is not valid. Please check your Email again.', active: true,} })
-    }else if(!isPassword(this.state.password)){
-      this.setState({error: {message: 'Your Password is not valid. Please check your Password again.', active: true,} })
     }
     
     else{
