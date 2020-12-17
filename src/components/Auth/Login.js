@@ -223,9 +223,12 @@ class Login extends Component {
           </div>
         </div>
         
+        <div className="acitve1">
         { error.active ? errorMessage : ''}
+        </div>
+        <div className="acitve2">
         { error.active2 ? errorMessage2 : ''}
-       
+        </div>
        
        
        
