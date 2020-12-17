@@ -34,6 +34,7 @@ fetch('https://parlezprod.azurewebsites.net/Auth/Login', {
   if(json["status"]==="OK") {
       sessionStorage.setItem('bearer-token', json["token"]);
       sessionStorage.setItem('authUserName', json["username"])
+      sessionStorage.setItem('userId', json["userid"])
       this.props.history.push("/")
   }
   else {

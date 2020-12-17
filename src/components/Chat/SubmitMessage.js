@@ -1,6 +1,6 @@
 
 import React, { Component, Fragment } from 'react'
-import { CautionIcon } from '../Icons'
+import { CautionIcon, RefreshIcon } from '../Icons'
 const BASE_URL = 'https://parlezprod.azurewebsites.net/api/';
 
 export class SubmitMessage extends Component {
@@ -10,6 +10,7 @@ export class SubmitMessage extends Component {
       userName: '',
       messageText: '',
       isAuthenticated: false,
+      userId: '',
       error: {
         message: '',
         active: false,
@@ -48,13 +49,14 @@ export class SubmitMessage extends Component {
         body: JSON.stringify({
             userName: this.state.userName,
             messageText: this.state.messageText,
-            createdOn: new Date()
+            createdOn: new Date(),
+            userId: this.state.userId
         })
     })
     .then(res => res.json())
         .then(() => {
-             this.setState({messageText: ''});
-             this.props.didPost();   
+            this.props.didPost();
+            this.setState({messageText: ''})   
         })
         .catch(function (error) {
             console.log(error);
@@ -79,7 +81,7 @@ export class SubmitMessage extends Component {
   }
 
   handleLogout = () => {
-    this.setState({ isAuthenticated: false, userName: '', messageText: '' }, () => {
+    this.setState({ isAuthenticated: false, userName: '', messageText: '', userId: '' }, () => {
       sessionStorage.clear()
     })
   }
@@ -93,11 +95,16 @@ export class SubmitMessage extends Component {
     }, 4000)
   }
 
+  loadMore = () => {
+    this.props.didPost()
+  }
+
   checkAuthentication(){
     const userToken = sessionStorage.getItem('bearer-token')
     const userName = sessionStorage.getItem('authUserName')
-    if( userToken && userName){
-      this.setState({isAuthenticated: true, userName: userName})
+    const userId = sessionStorage.getItem('userId')
+    if( userToken && userName && userId){
+      this.setState({isAuthenticated: true, userName: userName, userId: userId})
     }else{
       this.handleLogout()
     }
@@ -143,6 +150,7 @@ export class SubmitMessage extends Component {
 
     return (
       <section className="SubmitMessage">
+          <button className="refresh" onClick={(e) => { this.loadMore(e) }}> <div className="svg-cont"><RefreshIcon/></div><span>Fetch Messages</span></button>
           { error.active ? errorMessage : ''}
           <div className="sm__wrap">
           <form onSubmit={(e) => this.validateMessage(e)}>
@@ -152,7 +160,7 @@ export class SubmitMessage extends Component {
                 <p>Message:</p>
               </label>
               <div className="fieldset">
-                <textarea rows="2" type="text" placeholder="Aa" id="messageText" value={this.state.message} onChange={(e) => this.onInputChange(e)}/>
+                <textarea rows="2" type="text" placeholder="Aa" id="messageText" value={this.state.messageText} onChange={(e) => this.onInputChange(e)}/>
               </div>
               <div className="fieldset submit">
                 <button>Send</button>

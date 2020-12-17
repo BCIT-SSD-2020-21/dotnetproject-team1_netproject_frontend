@@ -76,13 +76,6 @@
         text-align: center;
     }
   
-    @media screen and (min-width: 767px){
-        font-size: 25px;
-    }
-  
-    @media screen and (min-width: 1144px){
-        font-size: 36px;
-    }
   }
   
   * h3.white {
@@ -90,14 +83,6 @@
     color: $white;
     letter-spacing: .05em;
     font-size: 17px;
-  
-    @media screen and (min-width: 767px){
-        font-size: 25px;
-    }
-  
-    @media screen and (min-width: 1144px){
-        font-size: 36px;
-    }
   }
   
   * h4 {
