@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
-import { MailIcon, LockIcon } from "../Icons";
+import { MailIcon, LockIcon, CautionIcon } from "../Icons";
 import { withRouter } from "react-router-dom";
 
 class Register extends Component {
@@ -201,6 +201,7 @@ class Register extends Component {
 
     render() {
         const { isValid, errors } = this.state;
+
         return (
             <section className="Login">
                 <div className="form__container">
@@ -252,13 +253,7 @@ class Register extends Component {
                             {isValid
                                 ? null
                                 : errors.map((err) => {
-                                      return (
-                                          <div className="em_container">
-                                              <ul>
-                                                  <li>{err}</li>
-                                              </ul>
-                                          </div>
-                                      );
+                                      return <div>{err}</div>;
                                   })}
                         </div>
                     </div>
