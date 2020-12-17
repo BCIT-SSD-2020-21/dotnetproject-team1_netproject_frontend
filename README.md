@@ -9,7 +9,7 @@
 </div>
 
 </br>
-
+<strong> Live Application: </strong> <a target="blank_" href="https://parlezprod.netlify.app/">Parlez</a> <br/>
 <strong>App type:</strong> Chat Application<br/>
 <strong>Description:</strong> A simple chat/forum application where users are able to create accounts, post messages to a chatroom, read and delete existing messages.
 
