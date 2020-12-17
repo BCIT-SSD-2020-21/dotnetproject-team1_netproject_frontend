@@ -3,8 +3,6 @@ import ChatMessage from './ChatMessage'
 import ChatBlocker from './ChatBlocker'
 import Preloader from '../Global/Preloader'
 
-
-
 const BASE_URL = "https://parlezprod.azurewebsites.net/api/";
 
 export class Chatlist extends Component {

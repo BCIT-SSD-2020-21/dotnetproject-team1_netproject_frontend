@@ -10,6 +10,7 @@ export class SubmitMessage extends Component {
       userName: '',
       messageText: '',
       isAuthenticated: false,
+      userId: '',
       error: {
         message: '',
         active: false,
@@ -48,7 +49,8 @@ export class SubmitMessage extends Component {
         body: JSON.stringify({
             userName: this.state.userName,
             messageText: this.state.messageText,
-            createdOn: new Date()
+            createdOn: new Date(),
+            userId: this.state.userId
         })
     })
     .then(res => res.json())
@@ -79,7 +81,7 @@ export class SubmitMessage extends Component {
   }
 
   handleLogout = () => {
-    this.setState({ isAuthenticated: false, userName: '', messageText: '' }, () => {
+    this.setState({ isAuthenticated: false, userName: '', messageText: '', userId: '' }, () => {
       sessionStorage.clear()
     })
   }
@@ -100,8 +102,9 @@ export class SubmitMessage extends Component {
   checkAuthentication(){
     const userToken = sessionStorage.getItem('bearer-token')
     const userName = sessionStorage.getItem('authUserName')
-    if( userToken && userName){
-      this.setState({isAuthenticated: true, userName: userName})
+    const userId = sessionStorage.getItem('userId')
+    if( userToken && userName && userId){
+      this.setState({isAuthenticated: true, userName: userName, userId: userId})
     }else{
       this.handleLogout()
     }
@@ -147,7 +150,7 @@ export class SubmitMessage extends Component {
 
     return (
       <section className="SubmitMessage">
-          <button className="refresh" onClick={(e) => {this.loadMore(e)}}> <div className="svg-cont"><RefreshIcon/></div>Load More </button>
+          <button className="refresh" onClick={(e) => { this.loadMore(e) }}> <div className="svg-cont"><RefreshIcon/></div><span>Fetch Messages</span></button>
           { error.active ? errorMessage : ''}
           <div className="sm__wrap">
           <form onSubmit={(e) => this.validateMessage(e)}>
