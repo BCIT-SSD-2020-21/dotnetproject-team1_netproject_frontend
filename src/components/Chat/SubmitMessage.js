@@ -30,29 +30,20 @@ export class SubmitMessage extends Component {
         }
     }
 
-    onInputChange = (e) => {
-        this.setState({
-            [e.target.id]: e.target.value,
-        });
-    };
-
-    submitMessages = (e) => {
-        e.preventDefault();
-        fetch(`${BASE_URL}Chat`, {
-            method: "POST",
-            headers: {
-                Authorization: `Bearer ${sessionStorage.getItem(
-                    "bearer-token"
-                )}`,
-                Accept: "application/json",
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify({
-                userName: this.state.userName,
-                messageText: this.state.messageText,
-                createdOn: new Date(),
-                userId: this.state.userId,
-            }),
+  submitMessages = (e) => {
+    e.preventDefault();
+    fetch(`${BASE_URL}Chat`, {
+        method: 'POST',   
+        headers: {
+          'Authorization': `Bearer ${sessionStorage.getItem('bearer-token')}`,
+          'Accept': 'application/json',
+          'Content-Type': 'application/json',
+      },
+        body: JSON.stringify({
+            userName: this.state.userName,
+            messageText: this.state.messageText,
+            createdOn: new Date().toLocaleString('en-US'),
+            userId: this.state.userId
         })
             .then((res) => res.json())
             .then(() => {
