@@ -32,9 +32,10 @@ class Register extends Component {
 // Data retrieved.
 .then(json => {
     // Store token with session data.
-    if(json["status"]=="OK") {
+    if(json["status"]==="OK") {
         sessionStorage.setItem('bearer-token', json["token"]);
         sessionStorage.setItem('authUserName', json["username"])
+        sessionStorage.setItem('userId', json["userid"])
         this.props.history.push("/")
     }
     else {
@@ -49,6 +50,7 @@ class Register extends Component {
   };
 
   onInputChange = event => {
+    console.log(event.target.id)
     this.setState({
       [event.target.id]: event.target.value
     });
@@ -72,7 +74,6 @@ class Register extends Component {
                   value={this.state.email}
                   onChange={this.onInputChange}
                 />
-              
             </div>
 
             <div className="fieldset">

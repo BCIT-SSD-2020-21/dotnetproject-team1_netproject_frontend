@@ -17,7 +17,7 @@ export class Chat extends Component {
         const { rerender } = this.state
         const { authToggle } = this.props
         return (
-            <div>
+            <div className="Chat">
                 <Chatlist rerender={rerender} authToggle={authToggle}/>
                 <SubmitMessage didPost={this.didPost} authToggle={authToggle} />
             </div>
