@@ -2,11 +2,20 @@
 # CHAT LIST
 --------------------------------------------------------------*/
 
+.Chat{
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
 .ChatList {
-  height: 500px;
+  height: 100%;
   overflow-y: auto;
   padding: 7px 20px;
+  padding-top: calc(45px + 7px);
   position: relative;
+  scroll-behavior: smooth;
+  box-shadow: inset 0px 0px 24px 9px rgba(0,0,0,0.25);
 
   /* width */
   &::-webkit-scrollbar {
@@ -29,4 +38,36 @@
     opacity: 0.25;
     border-radius: 10px;
   }
+
+
+  .info-text {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    z-index: 400;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+
+    .info__container {
+      display: flex;
+      background: $light-ruby;
+      max-width: 400px;
+      margin: auto;
+      padding: 7px 14px;
+      border-radius: 2px;
+
+      p {
+        color: white;
+        margin-left: 7px;
+      }
+
+      svg {
+        fill: white;
+      }
+    }
+  }
+
 }

@@ -15,7 +15,7 @@ class Register extends Component {
     //Prevent page reload
     event.preventDefault();
     
-    fetch('https://localhost:44363/Auth/Register', {
+    fetch('https://parlezprod.azurewebsites.net/Auth/Register', {
     method: 'POST',
     headers: {
         'Accept': 'application/json',
@@ -35,6 +35,7 @@ class Register extends Component {
     if(json["status"]==="OK") {
         sessionStorage.setItem('bearer-token', json["token"]);
         sessionStorage.setItem('authUserName', json["username"])
+        sessionStorage.setItem('userId', json["userid"])
         this.props.history.push("/")
     }
     else {
@@ -49,6 +50,7 @@ class Register extends Component {
   };
 
   onInputChange = event => {
+    console.log(event.target.id)
     this.setState({
       [event.target.id]: event.target.value
     });
@@ -72,7 +74,6 @@ class Register extends Component {
                   value={this.state.email}
                   onChange={this.onInputChange}
                 />
-              
             </div>
 
             <div className="fieldset">

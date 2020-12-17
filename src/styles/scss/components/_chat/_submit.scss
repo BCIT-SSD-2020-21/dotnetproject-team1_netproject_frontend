@@ -2,9 +2,55 @@
 # SUBMIT CHAT MESSAGE
 --------------------------------------------------------------*/
 .SubmitMessage {
-  border-top: 1px solid $dark-grey;
+  border-top: 1px solid $light-black;
   background: $light-black;
   position: relative;
+  max-height: 700px;
+  -webkit-box-shadow: 0px 0px 24px 9px rgba(0,0,0,0.25); 
+  box-shadow: 0px 0px 24px 9px rgba(0,0,0,0.25);
+
+  button.refresh {
+    display: flex;
+    @include body-light;
+    gap: 10px;
+    background: $light-ruby;
+    border-radius: 3px;
+    margin: auto;
+    padding: 3px 7px;
+    cursor: pointer;
+    margin-top: -7px;
+    margin-right: 20px;
+    position: relative;
+    z-index: 500;
+
+    span {
+      position: absolute;
+      text-align: center;
+      border-radius: 2px;
+      width: 120px;
+      left: -100px;
+      top: -25px;
+      background: rgba($color: #000000, $alpha: 0.5);
+      font-size: 12px !important;
+      padding: 3px 4px;
+      opacity: 0;
+      transition: .2s ease-in-out;
+
+    }
+
+    svg {
+      width: 17px;
+      fill: white;
+    }
+
+    &:hover,
+    &:active,
+    &:focus {
+      span {
+        opacity: 1;
+      }
+    }
+  }
 
   .em__container {
     position: absolute;

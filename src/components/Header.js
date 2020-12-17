@@ -1,6 +1,6 @@
 import React, { Component, Fragment } from 'react'
 import { Link, withRouter } from 'react-router-dom';
-import { UserIcon } from './Icons'
+import { UserIcon, ChatBubble } from './Icons'
 
 export class Header extends Component {
   constructor(props){
@@ -35,6 +35,7 @@ export class Header extends Component {
     this.setState({ isAuthenticated: false}, () => {
       this.props.toggleAuth();
       sessionStorage.clear()
+      localStorage.clear();
     })
   }
 
@@ -62,7 +63,12 @@ export class Header extends Component {
       <header>
         <section className="header__wrap">
           <div className="header__pseudo">
-            <h3 className="white"><Link to="/">PARLEZ</Link></h3>
+            <h3 className="white logo">
+              <div className="svg-cont">
+                  <ChatBubble />
+              </div>
+              <Link to="/">PARLEZ</Link>
+            </h3>
             { isAuthenticated ? authLinks : guestLinks}
           </div>
         </section>
