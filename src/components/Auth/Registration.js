@@ -28,7 +28,6 @@ class Register extends Component {
 
     validate(event) {
         event.preventDefault();
-        console.log(this.state.email);
         let email = this.state.email;
         let password = this.state.password;
         let confirmpassword = this.state.confirmpassword;
@@ -37,18 +36,15 @@ class Register extends Component {
             //state is set to false if email is invalid
             this.setState({ isValid: false });
             let errors = this.state.errors;
-            //sets error message
             let errorMessage = "Please enter your email address";
-            //pushes the error message into the error state array
 
             //checks the array to see if error stil exisits
             if (errors.includes(errorMessage)) {
                 return;
             } else {
+                //pushes the error message into the error state array
                 errors.push(errorMessage);
             }
-            //if error still exists, dont push error message
-            //if error exists push error message
         }
 
         let pattern = new RegExp(
@@ -184,21 +180,16 @@ class Register extends Component {
                     let errors = this.state.errors;
 
                     if (errors.includes(errorMessage)) {
-                        console.log("reached error message here");
                         return;
                     } else {
-                        console.log("pushed error message");
                         errors.push(errorMessage);
                     }
                     this.setState({ isValid: false });
-
-                    console.log(json.title);
                 }
             })
             // Data not retrieved.
             .catch(function (error) {
                 console.log(error);
-                console.log("catchMethod");
             });
     };
 
@@ -210,19 +201,12 @@ class Register extends Component {
 
     render() {
         const { isValid, errors } = this.state;
-        console.log(isValid);
         return (
             <section className="Login">
                 <div className="form__container">
                     <div className="modal-form">
                         <div className="modal-head">
                             <h3 className="modal-title">Register</h3>
-
-                            {isValid
-                                ? null
-                                : errors.map((err) => {
-                                      return <div>{err}</div>;
-                                  })}
                             <form
                                 onSubmit={(e) => this.validate(e)}
                                 onChange={(e) => this.resetErrors(e)}
@@ -265,6 +249,17 @@ class Register extends Component {
                                     <button className="submit">Register</button>
                                 </div>
                             </form>
+                            {isValid
+                                ? null
+                                : errors.map((err) => {
+                                      return (
+                                          <div className="em_container">
+                                              <ul>
+                                                  <li>{err}</li>
+                                              </ul>
+                                          </div>
+                                      );
+                                  })}
                         </div>
                     </div>
                     <div className="modal-footer">
