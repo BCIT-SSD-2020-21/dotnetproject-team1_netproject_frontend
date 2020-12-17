@@ -91,6 +91,7 @@ export class Chatlist extends Component {
             )
           })}
         </ul>
+        <button>Refresh</button>
       </div>
     )
   }

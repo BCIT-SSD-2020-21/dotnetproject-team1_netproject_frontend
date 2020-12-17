@@ -1,6 +1,6 @@
 
 import React, { Component, Fragment } from 'react'
-import { CautionIcon } from '../Icons'
+import { CautionIcon, RefreshIcon } from '../Icons'
 const BASE_URL = 'https://parlezprod.azurewebsites.net/api/';
 
 export class SubmitMessage extends Component {
@@ -93,6 +93,10 @@ export class SubmitMessage extends Component {
     }, 4000)
   }
 
+  loadMore = () => {
+    this.props.didPost()
+  }
+
   checkAuthentication(){
     const userToken = sessionStorage.getItem('bearer-token')
     const userName = sessionStorage.getItem('authUserName')
@@ -143,6 +147,7 @@ export class SubmitMessage extends Component {
 
     return (
       <section className="SubmitMessage">
+          <button className="refresh" onClick={(e) => {this.loadMore(e)}}> <div className="svg-cont"><RefreshIcon/></div>Load More </button>
           { error.active ? errorMessage : ''}
           <div className="sm__wrap">
           <form onSubmit={(e) => this.validateMessage(e)}>
