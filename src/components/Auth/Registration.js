@@ -132,7 +132,7 @@ class Register extends Component {
         }
 
         //Check matching password
-        if (confirmpassword != password) {
+        if (confirmpassword !== password) {
             this.setState({ isValid: false });
             let errors = this.state.errors;
             let errorMessage = "The passwords do not match";
@@ -169,7 +169,7 @@ class Register extends Component {
             // Data retrieved.
             .then((json) => {
                 // Store token with session data.
-                if (json["status"] == "OK") {
+                if (json["status"] === "OK") {
                     sessionStorage.setItem("bearer-token", json["token"]);
                     sessionStorage.setItem("authUserName", json["username"]);
                     sessionStorage.setItem("userId", json["userid"]);
