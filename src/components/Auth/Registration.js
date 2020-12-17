@@ -23,7 +23,7 @@ class Register extends Component {
     }
 
     resetErrors() {
-        this.setState({ errors: [] });
+        this.setState({ errors: [], isValid: true });
     }
 
     validate(event) {
@@ -34,10 +34,21 @@ class Register extends Component {
         let confirmpassword = this.state.confirmpassword;
 
         if (!email) {
+            //state is set to false if email is invalid
             this.setState({ isValid: false });
             let errors = this.state.errors;
+            //sets error message
             let errorMessage = "Please enter your email address";
-            errors.push(errorMessage);
+            //pushes the error message into the error state array
+
+            //checks the array to see if error stil exisits
+            if (errors.includes(errorMessage)) {
+                return;
+            } else {
+                errors.push(errorMessage);
+            }
+            //if error still exists, dont push error message
+            //if error exists push error message
         }
 
         let pattern = new RegExp(
@@ -47,8 +58,11 @@ class Register extends Component {
             this.setState({ isValid: false });
             let errors = this.state.errors;
             let errorMessage = "Not a valid email address";
-
-            errors.push(errorMessage);
+            if (errors.includes(errorMessage)) {
+                return;
+            } else {
+                errors.push(errorMessage);
+            }
         }
 
         let upperCase = new RegExp(/^(?=.*[A-Z])/);
@@ -58,7 +72,11 @@ class Register extends Component {
             this.setState({ isValid: false });
             let errors = this.state.errors;
             let errorMessage = "Password needs to include an UPPERCASE letter";
-            errors.push(errorMessage);
+            if (errors.includes(errorMessage)) {
+                return;
+            } else {
+                errors.push(errorMessage);
+            }
         }
 
         let lowerCase = new RegExp(/^(?=.*[a-z])/);
@@ -68,7 +86,11 @@ class Register extends Component {
             this.setState({ isValid: false });
             let errors = this.state.errors;
             let errorMessage = "Password needs to include a lowercase letter ";
-            errors.push(errorMessage);
+            if (errors.includes(errorMessage)) {
+                return;
+            } else {
+                errors.push(errorMessage);
+            }
         }
 
         let digits = new RegExp(/^(?=.*[0-9])/);
@@ -77,7 +99,11 @@ class Register extends Component {
             this.setState({ isValid: false });
             let errors = this.state.errors;
             let errorMessage = "Password needs to include a number";
-            errors.push(errorMessage);
+            if (errors.includes(errorMessage)) {
+                return;
+            } else {
+                errors.push(errorMessage);
+            }
         }
 
         let special = new RegExp(/^(?=.*[!@#$&*])/);
@@ -88,7 +114,11 @@ class Register extends Component {
             let errors = this.state.errors;
             let errorMessage =
                 "Passwords needs a special character !, @, #, $, or &";
-            errors.push(errorMessage);
+            if (errors.includes(errorMessage)) {
+                return;
+            } else {
+                errors.push(errorMessage);
+            }
         }
 
         let passLength = new RegExp(/^(?=.*[A-Za-z\d$@$!%*?&]{7})/);
@@ -98,7 +128,11 @@ class Register extends Component {
             this.setState({ isValid: false });
             let errors = this.state.errors;
             let errorMessage = "Password must be at least 7 characters";
-            errors.push(errorMessage);
+            if (errors.includes(errorMessage)) {
+                return;
+            } else {
+                errors.push(errorMessage);
+            }
         }
 
         //Check matching password
@@ -106,7 +140,11 @@ class Register extends Component {
             this.setState({ isValid: false });
             let errors = this.state.errors;
             let errorMessage = "The passwords do not match";
-            errors.push(errorMessage);
+            if (errors.includes(errorMessage)) {
+                return;
+            } else {
+                errors.push(errorMessage);
+            }
         }
     }
 
